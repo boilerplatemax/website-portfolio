@@ -29,7 +29,7 @@ export function Work() {
             Sites we&apos;ve <span className="gradient-text">shipped</span>.
           </h2>
           <p className="mt-3 text-ink-600 dark:text-ink-300">
-            Eleven recent builds across unions, charities, contractors and brands — each one custom, fast and built to last.
+            Recent builds across unions, charities, contractors and brands — each one custom, fast and built to last.
           </p>
         </div>
 
@@ -40,47 +40,56 @@ export function Work() {
 
         {/* Two supporting featured cards */}
         {supporting.length > 0 && (
-          <div className="mt-6 grid gap-5 sm:grid-cols-2">
+          <div className="mt-6 grid auto-rows-fr gap-5 sm:grid-cols-2">
             {supporting.map((item, i) => (
-              <motion.a
+              <motion.div
                 key={item.slug}
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="card group overflow-hidden"
+                className="h-full"
               >
-                <div className="relative overflow-hidden">
-                  <Media
-                    src={item.image}
-                    alt={item.title}
-                    label={item.image.replace('/media/', '')}
-                    aspect="aspect-[16/10]"
-                    className="rounded-none transition duration-500 group-hover:scale-105"
-                  />
-                  <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-ink-900 opacity-0 transition group-hover:opacity-100">
-                    Visit <Icon name="external" className="h-3 w-3" />
-                  </span>
-                </div>
-                <div className="p-6">
-                  <div className="flex flex-wrap items-center gap-2">
-                    {item.tags.slice(0, 2).map((tag) => (
-                      <span key={tag} className="rounded-full bg-brand-500/10 px-2.5 py-0.5 text-xs font-semibold text-brand-600 dark:text-brand-400">
-                        {tag}
-                      </span>
-                    ))}
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="card group flex h-full flex-col overflow-hidden"
+                >
+                  <div className="relative overflow-hidden">
+                    <Media
+                      src={item.image}
+                      alt={item.title}
+                      label={item.image.replace('/media/', '')}
+                      aspect="aspect-[16/10]"
+                      rounded=""
+                      className="transition duration-500 group-hover:scale-105"
+                    />
+                    <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-ink-900 opacity-0 transition group-hover:opacity-100">
+                      Visit <Icon name="external" className="h-3 w-3" />
+                    </span>
                   </div>
-                  <h3 className="mt-3 font-display text-xl font-semibold text-ink-900 dark:text-ink-50">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
-                    {item.description}
-                  </p>
-                </div>
-              </motion.a>
+                  <div className="flex flex-1 flex-col p-6">
+                    <div className="flex flex-wrap items-center gap-2">
+                      {item.tags.slice(0, 3).map((tag) => (
+                        <span key={tag} className="rounded-full bg-brand-500/10 px-2.5 py-0.5 text-xs font-semibold text-brand-600 dark:text-brand-400">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <h3 className="mt-3 font-display text-xl font-semibold text-ink-900 dark:text-ink-50">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+                      {item.description}
+                    </p>
+                    <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+                      View live site
+                      <Icon name="external" className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </a>
+              </motion.div>
             ))}
           </div>
         )}
@@ -109,8 +118,8 @@ export function Work() {
           })}
         </div>
 
-        {/* Gallery */}
-        <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Gallery — auto-rows-fr + h-full keeps every card in a row the same height, so descriptions don't need truncation */}
+        <ul className="mt-8 grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {visible.map((item) => (
               <motion.li
@@ -120,13 +129,13 @@ export function Work() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.3 }}
-                className="card group overflow-hidden"
+                className="h-full"
               >
                 <a
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block"
+                  className="card group flex h-full flex-col overflow-hidden"
                 >
                   <div className="relative overflow-hidden">
                     <Media
@@ -134,10 +143,11 @@ export function Work() {
                       alt={item.title}
                       label={item.image.replace('/media/', '')}
                       aspect="aspect-[16/10]"
-                      className="rounded-none transition duration-500 group-hover:scale-105"
+                      rounded=""
+                      className="transition duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-5">
+                  <div className="flex flex-1 flex-col p-5">
                     <div className="flex flex-wrap gap-1.5">
                       {item.tags.map((tag) => (
                         <span key={tag} className="rounded-full bg-ink-100 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-ink-600 dark:bg-ink-800 dark:text-ink-300">
@@ -149,7 +159,7 @@ export function Work() {
                       {item.title}
                       <Icon name="external" className="h-4 w-4 opacity-0 transition group-hover:opacity-100" />
                     </h3>
-                    <p className="mt-2 line-clamp-3 text-sm text-ink-600 dark:text-ink-300">
+                    <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
                       {item.description}
                     </p>
                   </div>
@@ -191,28 +201,30 @@ function FeaturedCollectionCard({ item, className = '' }) {
       <div className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-brand-500/10 blur-3xl" />
       <div className="absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-accent-500/10 blur-3xl" />
 
-      <div className="relative grid gap-10 p-6 sm:p-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
-        {/* Hero image */}
+      {/* Two-column grid with no outer padding; image bleeds to left/top/bottom on desktop and to left/right/top on mobile */}
+      <div className="relative grid lg:grid-cols-[1.05fr_1fr]">
+        {/* Lead image — fills its cell edge-to-edge */}
         <a
           href={item.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative block overflow-hidden rounded-2xl shadow-card"
+          className="group relative block self-stretch overflow-hidden bg-ink-100 dark:bg-ink-900"
         >
           <Media
             src={item.image}
             alt={item.title}
             label={item.image.replace('/media/', '')}
-            aspect="aspect-[16/11]"
-            className="rounded-none transition duration-500 group-hover:scale-[1.03]"
+            aspect="aspect-[16/11] lg:aspect-auto"
+            rounded=""
+            className="h-full transition duration-500 group-hover:scale-[1.03]"
           />
           <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-ink-900 opacity-0 transition group-hover:opacity-100">
             Visit live site <Icon name="external" className="h-3 w-3" />
           </span>
         </a>
 
-        {/* Content */}
-        <div className="flex flex-col">
+        {/* Content column — owns all of the padding */}
+        <div className="flex flex-col p-6 sm:p-10">
           <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-brand-500 to-accent-500 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-white shadow-glow">
               <Icon name="check" className="h-3 w-3" /> Brand collection

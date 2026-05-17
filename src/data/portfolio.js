@@ -59,6 +59,26 @@ export const PORTFOLIO = [
     },
   },
   {
+    slug: 'uniontab',
+    title: 'UnionTab',
+    url: 'https://uniontab.com',
+    image: '/media/portfolio/uniontab.png',
+    tags: ['Union', 'Software', 'Brand'],
+    description:
+      'An all-in-one platform that puts secure online voting, mass email & SMS, a member portal, document storage and event RSVPs in a single dashboard for union executives.',
+    featured: true,
+  },
+  {
+    slug: 'signaturespan',
+    title: 'Signature Span',
+    url: 'https://signaturespan.com',
+    image: '/media/portfolio/signaturespan.png',
+    tags: ['Construction', 'Brand'],
+    description:
+      'A minimalist, photography-led showcase for an architectural glass studio — large-format windows, lift-and-slide doors and folding glass walls presented with the quiet polish their work demands.',
+    featured: true,
+  },
+  {
     slug: 'camp321',
     title: 'Camp 3-21',
     url: 'https://camp321.ca',
@@ -86,7 +106,7 @@ export const PORTFOLIO = [
     tags: ['Union'],
     description:
       'A robust union website for over 1,000 members, featuring secure 2FA login, user approval systems, private member access, news updates, and real-time notifications.',
-    featured: true,
+    featured: false,
   },
   {
     slug: 'teachers-union',
@@ -136,7 +156,7 @@ export const PORTFOLIO = [
     tags: ['Brand', 'E-commerce'],
     description:
       'An online store for premium Italian foods and sauces with a built-in shipping calculator, free local delivery, and engaging blog content for food lovers.',
-    featured: true,
+    featured: false,
   },
   {
     slug: 'pay321',

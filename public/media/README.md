@@ -14,6 +14,8 @@ public/media/
 └─ portfolio/
    ├─ apssp.png
    ├─ downsyndrome-canada.png            ← Down Syndrome Canada (lead image for the brand-collection card)
+   ├─ uniontab.png                       ← UnionTab           (uniontab.com)         — featured
+   ├─ signaturespan.png                  ← Signature Span     (signaturespan.com)    — featured
    ├─ camp321.png
    ├─ peel-transition.png
    ├─ atu1573.png

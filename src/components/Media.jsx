@@ -4,13 +4,20 @@ import { useState } from 'react';
  * Image with built-in fallback placeholder so the layout looks polished
  * before the real media files are dropped into /public/media.
  */
-export function Media({ src, alt, className = '', label, aspect = 'aspect-[16/10]' }) {
+export function Media({
+  src,
+  alt,
+  className = '',
+  label,
+  aspect = 'aspect-[16/10]',
+  rounded = 'rounded-2xl',
+}) {
   const [failed, setFailed] = useState(false);
 
   if (!src || failed) {
     return (
       <div
-        className={`media-placeholder relative flex items-center justify-center overflow-hidden rounded-2xl ${aspect} ${className}`}
+        className={`media-placeholder relative flex items-center justify-center overflow-hidden ${rounded} ${aspect} ${className}`}
         role="img"
         aria-label={alt}
       >
@@ -36,7 +43,7 @@ export function Media({ src, alt, className = '', label, aspect = 'aspect-[16/10
       alt={alt}
       loading="lazy"
       onError={() => setFailed(true)}
-      className={`${aspect} w-full rounded-2xl object-cover ${className}`}
+      className={`${aspect} w-full ${rounded} object-cover ${className}`}
     />
   );
 }
