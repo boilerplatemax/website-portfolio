@@ -81,23 +81,6 @@ export function Hero() {
               className="shadow-card"
             />
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="absolute -bottom-6 -left-6 hidden sm:block"
-          >
-            <div className="card flex items-center gap-3 p-4">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent-500/10 text-accent-600">
-                <Icon name="check" className="h-5 w-5" />
-              </span>
-              <div>
-                <p className="text-xs uppercase tracking-[0.18em] text-ink-500 dark:text-ink-400">Live now</p>
-                <p className="text-sm font-semibold text-ink-900 dark:text-ink-50">11 sites in production</p>
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
