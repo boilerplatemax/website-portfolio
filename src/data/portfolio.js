@@ -29,28 +29,31 @@ export const PORTFOLIO = [
       'A custom-built WordPress & React JS website for a national non-profit, featuring donations, educational resources, and an integrated Help321 platform supporting the Down Syndrome community.',
     featured: true,
     collection: {
-      label: 'A connected family of sites built around one brand',
+      label: 'A connected family of sites built around one brand.',
       sites: [
         {
           title: 'Down Syndrome Canada',
           domain: 'downsyndrome.ca',
           url: 'https://downsyndrome.ca/',
-          image: '/media/portfolio/downsyndrome-canada.png',
+          initials: 'DSC',
           role: 'Main hub',
+          gradient: 'from-brand-500 to-brand-700',
         },
         {
           title: 'Down Syndrome Foundation',
           domain: 'downsyndromefoundation.ca',
           url: 'https://downsyndromefoundation.ca/en/',
-          image: '/media/portfolio/downsyndrome-foundation.png',
+          initials: 'DSF',
           role: 'Foundation',
+          gradient: 'from-accent-500 to-brand-600',
         },
         {
           title: 'Skills Development',
           domain: 'skillsdevelopment.ca',
           url: 'https://skillsdevelopment.ca/',
-          image: '/media/portfolio/skills-development.png',
+          initials: 'SD',
           role: 'Programs',
+          gradient: 'from-brand-400 to-accent-500',
         },
       ],
     },
@@ -156,7 +159,7 @@ export const STATS = [
     icon: 'thumbs-up',
   },
   {
-    value: 50,
+    value: 65,
     suffix: '%',
     title: 'Increase in Traffic',
     description:
@@ -164,11 +167,11 @@ export const STATS = [
     icon: 'chart',
   },
   {
-    value: 14,
+    value: 10,
     suffix: ' Days',
     title: 'Average Build Time',
     description:
-      'Have an amazing fully functional website in as little as two weeks.',
+      'Have an amazing fully functional website in as little as ten days.',
     icon: 'clock',
   },
 ];

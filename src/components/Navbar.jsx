@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from './Icon.jsx';
 import { useTheme } from '../hooks/useTheme.js';
@@ -12,9 +12,24 @@ const LINKS = [
   { label: 'Contact', to: '/contact' },
 ];
 
+const SECTION_IDS = ['work', 'services'];
+
+function isLinkActive(to, location, activeSection) {
+  const { pathname, hash } = location;
+  if (to.startsWith('/#')) {
+    if (pathname !== '/') return false;
+    const target = to.slice(2);
+    if (hash === `#${target}`) return true;
+    return activeSection === target;
+  }
+  if (to === '/') return pathname === '/' && !activeSection;
+  return pathname === to || pathname.startsWith(`${to}/`);
+}
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState(null);
   const { theme, toggle } = useTheme();
   const location = useLocation();
 
@@ -28,6 +43,31 @@ export function Navbar() {
   useEffect(() => {
     setOpen(false);
   }, [location.pathname, location.hash]);
+
+  // Scroll-spy: light up Portfolio / Services when their section is in view
+  useEffect(() => {
+    if (location.pathname !== '/') {
+      setActiveSection(null);
+      return undefined;
+    }
+    const sections = SECTION_IDS
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+    if (!sections.length) return undefined;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveSection(visible.target.id);
+        else if (window.scrollY < 200) setActiveSection(null);
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5, 1] },
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [location.pathname]);
 
   return (
     <header
@@ -56,23 +96,24 @@ export function Navbar() {
         </Link>
 
         <ul className="hidden items-center gap-1 lg:flex">
-          {LINKS.map((link) => (
-            <li key={link.to}>
-              <NavLink
-                to={link.to}
-                end={link.to === '/'}
-                className={({ isActive }) =>
-                  `rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                    isActive && !link.to.includes('#')
+          {LINKS.map((link) => {
+            const active = isLinkActive(link.to, location, activeSection);
+            return (
+              <li key={link.to}>
+                <Link
+                  to={link.to}
+                  aria-current={active ? 'page' : undefined}
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                    active
                       ? 'bg-ink-900/5 text-ink-900 dark:bg-white/10 dark:text-white'
                       : 'text-ink-700 hover:text-ink-900 dark:text-ink-200 dark:hover:text-white'
-                  }`
-                }
-              >
-                {link.label}
-              </NavLink>
-            </li>
-          ))}
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-2">

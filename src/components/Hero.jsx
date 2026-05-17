@@ -56,11 +56,11 @@ export function Hero() {
             </div>
             <div>
               <dt className="text-xs uppercase tracking-[0.18em] text-ink-500 dark:text-ink-400">Traffic lift</dt>
-              <dd className="mt-1 font-display text-2xl font-bold text-ink-900 dark:text-ink-50">+50%</dd>
+              <dd className="mt-1 font-display text-2xl font-bold text-ink-900 dark:text-ink-50">+65%</dd>
             </div>
             <div>
               <dt className="text-xs uppercase tracking-[0.18em] text-ink-500 dark:text-ink-400">Build time</dt>
-              <dd className="mt-1 font-display text-2xl font-bold text-ink-900 dark:text-ink-50">~14d</dd>
+              <dd className="mt-1 font-display text-2xl font-bold text-ink-900 dark:text-ink-50">~10d</dd>
             </div>
           </dl>
         </motion.div>
@@ -78,7 +78,6 @@ export function Hero() {
               alt="A designer crafting a website"
               label="hero/ux-designer-illustration.png"
               aspect="aspect-[4/3]"
-              className="shadow-card"
             />
           </div>
         </motion.div>

@@ -238,7 +238,7 @@ function FeaturedCollectionCard({ item, className = '' }) {
                 {collection.label}
               </p>
 
-              <ul className="mt-5 grid gap-3 sm:grid-cols-3">
+              <ul className="mt-5 grid auto-rows-fr gap-3 sm:grid-cols-3">
                 {sites.map((site, i) => (
                   <motion.li
                     key={site.url}
@@ -246,30 +246,31 @@ function FeaturedCollectionCard({ item, className = '' }) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
+                    className="h-full"
                   >
                     <a
                       href={site.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group block overflow-hidden rounded-2xl border border-ink-200 bg-white transition hover:-translate-y-0.5 hover:border-brand-400 hover:shadow-glow dark:border-ink-800 dark:bg-ink-900"
+                      className="group flex h-full flex-col gap-3 overflow-hidden rounded-2xl border border-ink-200 bg-white p-4 transition hover:-translate-y-0.5 hover:border-brand-400 hover:shadow-glow dark:border-ink-800 dark:bg-ink-900"
                     >
-                      <Media
-                        src={site.image}
-                        alt={site.title}
-                        label={site.image.replace('/media/', '')}
-                        aspect="aspect-[16/10]"
-                        className="rounded-none transition duration-500 group-hover:scale-105"
-                      />
-                      <div className="p-3">
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+                      <div className="flex items-center gap-3">
+                        <span
+                          className={`grid h-12 w-12 flex-none place-items-center rounded-xl bg-gradient-to-br ${site.gradient} font-display text-sm font-bold tracking-wide text-white shadow-glow`}
+                        >
+                          {site.initials}
+                        </span>
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
                           {site.role}
-                        </p>
-                        <p className="mt-0.5 font-display text-sm font-semibold text-ink-900 dark:text-ink-50">
+                        </span>
+                      </div>
+                      <div className="flex flex-1 flex-col">
+                        <p className="font-display text-sm font-semibold leading-snug text-ink-900 dark:text-ink-50">
                           {site.title}
                         </p>
-                        <p className="mt-0.5 flex items-center gap-1 text-xs text-ink-500 dark:text-ink-400">
-                          {site.domain}
-                          <Icon name="external" className="h-3 w-3 opacity-0 transition group-hover:opacity-100" />
+                        <p className="mt-auto flex items-center gap-1 pt-2 text-xs text-ink-500 dark:text-ink-400">
+                          <span className="truncate">{site.domain}</span>
+                          <Icon name="external" className="h-3 w-3 flex-none opacity-0 transition group-hover:opacity-100" />
                         </p>
                       </div>
                     </a>

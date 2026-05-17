@@ -45,7 +45,6 @@ export function CtaBanner() {
                 alt="A designer juggling tasks"
                 label="hero/designer-juggling-tasks.png"
                 aspect="aspect-[4/3]"
-                className="bg-white/10"
               />
             </div>
           </div>
