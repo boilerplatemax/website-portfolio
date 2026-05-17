@@ -39,7 +39,9 @@ public/media/
 │  └─ portrait.jpg                       ← About page portrait/team photo (recommended 1200×1500 portrait, .jpg or .webp)
 └─ portfolio/
    ├─ apssp.png
-   ├─ downsyndrome-canada.png
+   ├─ downsyndrome-canada.png        ← Down Syndrome Canada (main hub)
+   ├─ downsyndrome-foundation.png    ← Down Syndrome Foundation (sister site)
+   ├─ skills-development.png         ← Skills Development (sister site)
    ├─ camp321.png
    ├─ peel-transition.png
    ├─ atu1573.png

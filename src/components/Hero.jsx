@@ -7,7 +7,11 @@ import { Media } from './Media.jsx';
 const ROTATOR = ['Contractors', 'Charities', 'Brands', 'Restaurants', 'Just About Anyone'];
 
 export function Hero() {
-  const typed = useTypewriter(ROTATOR);
+  const typed = useTypewriter(ROTATOR, {
+    typeSpeed: 130,
+    deleteSpeed: 70,
+    pauseMs: 2400,
+  });
 
   return (
     <section

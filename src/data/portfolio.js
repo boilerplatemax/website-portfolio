@@ -28,6 +28,32 @@ export const PORTFOLIO = [
     description:
       'A custom-built WordPress & React JS website for a national non-profit, featuring donations, educational resources, and an integrated Help321 platform supporting the Down Syndrome community.',
     featured: true,
+    collection: {
+      label: 'A connected family of sites built around one brand',
+      sites: [
+        {
+          title: 'Down Syndrome Canada',
+          domain: 'downsyndrome.ca',
+          url: 'https://downsyndrome.ca/',
+          image: '/media/portfolio/downsyndrome-canada.png',
+          role: 'Main hub',
+        },
+        {
+          title: 'Down Syndrome Foundation',
+          domain: 'downsyndromefoundation.ca',
+          url: 'https://downsyndromefoundation.ca/en/',
+          image: '/media/portfolio/downsyndrome-foundation.png',
+          role: 'Foundation',
+        },
+        {
+          title: 'Skills Development',
+          domain: 'skillsdevelopment.ca',
+          url: 'https://skillsdevelopment.ca/',
+          image: '/media/portfolio/skills-development.png',
+          role: 'Programs',
+        },
+      ],
+    },
   },
   {
     slug: 'camp321',

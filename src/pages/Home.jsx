@@ -11,8 +11,8 @@ export default function Home() {
     <>
       <Hero />
       <Marquee />
-      <Services />
       <Work />
+      <Services />
       <Stats />
       <Process />
       <CtaBanner />

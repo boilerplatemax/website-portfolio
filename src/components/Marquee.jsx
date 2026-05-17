@@ -1,20 +1,25 @@
 const TAGS = [
-  'WordPress',
-  'React',
-  'Next.js',
-  'WooCommerce',
-  'Tailwind CSS',
-  'Framer Motion',
-  'Headless CMS',
-  'SEO',
-  'A11y',
-  'Performance',
+  'Web Design',
+  'Brand Identity',
+  'Logo Design',
+  'User Experience',
+  'Graphic Design',
+  'Custom Illustration',
+  'Visual Storytelling',
+  'Responsive Layouts',
+  'Animation & Motion',
+  'Photography',
+  'Colour & Typography',
+  'Print & Digital',
 ];
 
 export function Marquee() {
   return (
     <div className="relative overflow-hidden border-y border-ink-200 bg-white/60 py-6 dark:border-ink-800 dark:bg-ink-900/60">
-      <div className="flex animate-[gradient-x_30s_linear_infinite] gap-12 whitespace-nowrap [animation-name:marquee] motion-safe:[animation:marquee_28s_linear_infinite]">
+      <div
+        className="flex gap-12 whitespace-nowrap"
+        style={{ animation: 'marquee 70s linear infinite' }}
+      >
         {[...TAGS, ...TAGS].map((t, i) => (
           <span
             key={`${t}-${i}`}

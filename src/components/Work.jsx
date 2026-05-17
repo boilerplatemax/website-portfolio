@@ -17,75 +17,73 @@ export function Work() {
 
   const visible = filtered.slice(0, count);
   const featured = PORTFOLIO.filter((p) => p.featured);
+  const hero = featured.find((p) => p.collection) ?? featured[0];
+  const supporting = featured.filter((p) => p.slug !== hero?.slug);
 
   return (
     <section id="work" className="section">
       <div className="container-x">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div className="max-w-xl">
-            <span className="eyebrow">Selected work</span>
-            <h2 className="mt-4 heading-lg">
-              Sites we&apos;ve <span className="gradient-text">shipped</span>.
-            </h2>
-            <p className="mt-3 text-ink-600 dark:text-ink-300">
-              Eleven recent builds across unions, charities, contractors and brands — each one custom, fast and built to last.
-            </p>
-          </div>
-          <a
-            href="https://sitecraftersdev.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:inline-flex btn-ghost"
-          >
-            All projects <Icon name="external" className="h-4 w-4" />
-          </a>
+        <div className="max-w-2xl">
+          <span className="eyebrow">Selected work</span>
+          <h2 className="mt-4 heading-lg">
+            Sites we&apos;ve <span className="gradient-text">shipped</span>.
+          </h2>
+          <p className="mt-3 text-ink-600 dark:text-ink-300">
+            Eleven recent builds across unions, charities, contractors and brands — each one custom, fast and built to last.
+          </p>
         </div>
 
-        {/* Featured trio */}
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
-          {featured.map((item, i) => (
-            <motion.a
-              key={item.slug}
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className={`group card overflow-hidden ${i === 0 ? 'lg:row-span-2 lg:col-span-1' : ''}`}
-            >
-              <div className="relative overflow-hidden">
-                <Media
-                  src={item.image}
-                  alt={item.title}
-                  label={item.image.replace('/media/', '')}
-                  aspect={i === 0 ? 'aspect-[4/5]' : 'aspect-[16/10]'}
-                  className="rounded-none transition duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-ink-950/10 to-transparent opacity-0 transition group-hover:opacity-100" />
-                <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-ink-900 opacity-0 transition group-hover:opacity-100">
-                  Visit <Icon name="external" className="h-3 w-3" />
-                </span>
-              </div>
-              <div className="p-6">
-                <div className="flex flex-wrap items-center gap-2">
-                  {item.tags.slice(0, 2).map((tag) => (
-                    <span key={tag} className="rounded-full bg-brand-500/10 px-2.5 py-0.5 text-xs font-semibold text-brand-600 dark:text-brand-400">
-                      {tag}
-                    </span>
-                  ))}
+        {/* Featured: brand-collection card spans full width */}
+        {hero && (
+          <FeaturedCollectionCard item={hero} className="mt-10" />
+        )}
+
+        {/* Two supporting featured cards */}
+        {supporting.length > 0 && (
+          <div className="mt-6 grid gap-5 sm:grid-cols-2">
+            {supporting.map((item, i) => (
+              <motion.a
+                key={item.slug}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="card group overflow-hidden"
+              >
+                <div className="relative overflow-hidden">
+                  <Media
+                    src={item.image}
+                    alt={item.title}
+                    label={item.image.replace('/media/', '')}
+                    aspect="aspect-[16/10]"
+                    className="rounded-none transition duration-500 group-hover:scale-105"
+                  />
+                  <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-ink-900 opacity-0 transition group-hover:opacity-100">
+                    Visit <Icon name="external" className="h-3 w-3" />
+                  </span>
                 </div>
-                <h3 className="mt-3 font-display text-xl font-semibold text-ink-900 dark:text-ink-50">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
-                  {item.description}
-                </p>
-              </div>
-            </motion.a>
-          ))}
-        </div>
+                <div className="p-6">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {item.tags.slice(0, 2).map((tag) => (
+                      <span key={tag} className="rounded-full bg-brand-500/10 px-2.5 py-0.5 text-xs font-semibold text-brand-600 dark:text-brand-400">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <h3 className="mt-3 font-display text-xl font-semibold text-ink-900 dark:text-ink-50">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        )}
 
         {/* Filters */}
         <div className="mt-16 flex flex-wrap items-center gap-2">
@@ -175,5 +173,113 @@ export function Work() {
         )}
       </div>
     </section>
+  );
+}
+
+function FeaturedCollectionCard({ item, className = '' }) {
+  const collection = item.collection;
+  const sites = collection?.sites ?? [];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6 }}
+      className={`relative overflow-hidden rounded-[2rem] border border-ink-200 bg-gradient-to-br from-white via-white to-brand-50 shadow-card dark:border-ink-800 dark:from-ink-900 dark:via-ink-900 dark:to-ink-950 ${className}`}
+    >
+      <div className="absolute -right-32 -top-32 h-80 w-80 rounded-full bg-brand-500/10 blur-3xl" />
+      <div className="absolute -bottom-32 -left-24 h-80 w-80 rounded-full bg-accent-500/10 blur-3xl" />
+
+      <div className="relative grid gap-10 p-6 sm:p-10 lg:grid-cols-[1.05fr_1fr] lg:gap-12">
+        {/* Hero image */}
+        <a
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative block overflow-hidden rounded-2xl shadow-card"
+        >
+          <Media
+            src={item.image}
+            alt={item.title}
+            label={item.image.replace('/media/', '')}
+            aspect="aspect-[16/11]"
+            className="rounded-none transition duration-500 group-hover:scale-[1.03]"
+          />
+          <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-ink-900 opacity-0 transition group-hover:opacity-100">
+            Visit live site <Icon name="external" className="h-3 w-3" />
+          </span>
+        </a>
+
+        {/* Content */}
+        <div className="flex flex-col">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-brand-500 to-accent-500 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-white shadow-glow">
+              <Icon name="check" className="h-3 w-3" /> Brand collection
+            </span>
+            {item.tags.map((tag) => (
+              <span key={tag} className="rounded-full bg-brand-500/10 px-2.5 py-0.5 text-xs font-semibold text-brand-600 dark:text-brand-400">
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <h3 className="mt-4 font-display text-2xl font-bold text-ink-900 sm:text-3xl dark:text-ink-50">
+            {item.title}
+          </h3>
+          <p className="mt-3 text-ink-600 dark:text-ink-300">{item.description}</p>
+
+          {collection && (
+            <div className="mt-7 border-t border-ink-200 pt-6 dark:border-ink-800">
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink-500 dark:text-ink-400">
+                Part of a {sites.length}-site brand family
+              </p>
+              <p className="mt-1 text-sm text-ink-600 dark:text-ink-300">
+                {collection.label}
+              </p>
+
+              <ul className="mt-5 grid gap-3 sm:grid-cols-3">
+                {sites.map((site, i) => (
+                  <motion.li
+                    key={site.url}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.1 + i * 0.08 }}
+                  >
+                    <a
+                      href={site.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group block overflow-hidden rounded-2xl border border-ink-200 bg-white transition hover:-translate-y-0.5 hover:border-brand-400 hover:shadow-glow dark:border-ink-800 dark:bg-ink-900"
+                    >
+                      <Media
+                        src={site.image}
+                        alt={site.title}
+                        label={site.image.replace('/media/', '')}
+                        aspect="aspect-[16/10]"
+                        className="rounded-none transition duration-500 group-hover:scale-105"
+                      />
+                      <div className="p-3">
+                        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-600 dark:text-brand-400">
+                          {site.role}
+                        </p>
+                        <p className="mt-0.5 font-display text-sm font-semibold text-ink-900 dark:text-ink-50">
+                          {site.title}
+                        </p>
+                        <p className="mt-0.5 flex items-center gap-1 text-xs text-ink-500 dark:text-ink-400">
+                          {site.domain}
+                          <Icon name="external" className="h-3 w-3 opacity-0 transition group-hover:opacity-100" />
+                        </p>
+                      </div>
+                    </a>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </motion.div>
   );
 }
