@@ -7,83 +7,103 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-ink-50 text-ink-900 antialiased font-sans;
+    @apply bg-ink-100 text-ink-900 antialiased font-sans;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
   }
   .dark body {
     @apply bg-ink-950 text-ink-100;
   }
   ::selection {
-    @apply bg-brand-500/30 text-ink-900;
+    @apply bg-clay-500/25 text-ink-900;
   }
   .dark ::selection {
-    @apply bg-brand-500/40 text-ink-50;
+    @apply bg-clay-500/30 text-ink-50;
   }
 }
 
 @layer components {
   .container-x {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10;
   }
 
+  /* --- Buttons: solid ink or hairline ghost. No gradients, no glow. --- */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-50 dark:focus-visible:ring-offset-ink-950;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-200 ease-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-100 dark:focus-visible:ring-offset-ink-950;
   }
   .btn-primary {
-    @apply btn bg-gradient-to-r from-brand-600 to-accent-500 text-white shadow-glow hover:from-brand-700 hover:to-accent-600 hover:-translate-y-0.5;
+    @apply btn bg-ink-900 text-ink-50 hover:bg-ink-800 dark:bg-ink-50 dark:text-ink-900 dark:hover:bg-white;
   }
   .btn-ghost {
-    @apply btn border border-ink-200 bg-white/60 text-ink-900 backdrop-blur hover:border-ink-300 hover:bg-white dark:border-ink-700 dark:bg-ink-900/60 dark:text-ink-100 dark:hover:bg-ink-800;
+    @apply btn border border-ink-300 bg-transparent text-ink-800 hover:border-ink-400 hover:bg-ink-50 dark:border-ink-700 dark:text-ink-100 dark:hover:border-ink-600 dark:hover:bg-ink-900;
   }
 
   .section {
-    @apply py-20 sm:py-28;
+    @apply py-24 sm:py-32;
   }
+
+  /* --- Mono micro-label used for eyebrows / section indices. --- */
   .eyebrow {
-    @apply inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white/60 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-ink-600 backdrop-blur dark:border-ink-700 dark:bg-ink-900/60 dark:text-ink-300;
+    @apply inline-flex items-center gap-2.5 font-mono text-[0.7rem] font-medium uppercase tracking-label text-ink-500 dark:text-ink-400;
   }
+  .eyebrow::before {
+    content: '';
+    @apply inline-block h-1.5 w-1.5 rounded-full bg-clay-500;
+  }
+
   .heading-xl {
-    @apply font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl;
+    @apply font-display text-4xl font-medium leading-[1.02] tracking-[-0.015em] sm:text-5xl lg:text-[3.75rem];
   }
   .heading-lg {
-    @apply font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl;
+    @apply font-display text-3xl font-medium leading-[1.05] tracking-[-0.015em] sm:text-[2.6rem];
   }
 
+  /* --- Flat, hairline card. Lift only appears on hover where asked. --- */
   .card {
-    @apply rounded-3xl border border-ink-200 bg-white shadow-card transition-all dark:border-ink-800 dark:bg-ink-900;
-  }
-  .gradient-text {
-    @apply bg-gradient-to-r from-brand-500 via-brand-400 to-accent-500 bg-clip-text text-transparent;
+    @apply rounded-2xl border border-ink-200 bg-ink-50 transition-all duration-300 ease-soft dark:border-ink-800 dark:bg-ink-900;
   }
 
+  /* Editorial emphasis: same serif, set in italic clay. Replaces the old
+     rainbow gradient-text; kept under the same name so headings still work. */
+  .gradient-text {
+    @apply font-display italic text-clay-600 dark:text-clay-400;
+  }
+
+  .hairline {
+    @apply border-t border-ink-200 dark:border-ink-800;
+  }
+
+  /* Barely-there warm wash behind the hero — a whisper, not a light show. */
   .grid-bg {
-    background-image:
-      radial-gradient(circle at 20% 0%, rgba(99,102,241,0.18), transparent 45%),
-      radial-gradient(circle at 80% 30%, rgba(16,185,129,0.12), transparent 45%),
-      linear-gradient(to bottom, transparent, transparent);
+    background-image: radial-gradient(
+      120% 90% at 50% -10%,
+      rgba(200, 106, 63, 0.06),
+      transparent 60%
+    );
   }
   .dark .grid-bg {
-    background-image:
-      radial-gradient(circle at 20% 0%, rgba(99,102,241,0.22), transparent 45%),
-      radial-gradient(circle at 80% 30%, rgba(16,185,129,0.15), transparent 45%);
+    background-image: radial-gradient(
+      120% 90% at 50% -10%,
+      rgba(200, 106, 63, 0.1),
+      transparent 60%
+    );
   }
 }
 
-/* image-placeholder pattern (shown when media isn't dropped in yet) */
+/* Placeholder shown until a real image is dropped in — warm, quiet. */
 .media-placeholder {
-  background:
-    repeating-linear-gradient(
-      45deg,
-      rgba(99,102,241,0.10) 0 12px,
-      rgba(99,102,241,0.04) 12px 24px
-    ),
-    linear-gradient(135deg, #eef2ff, #ecfdf5);
+  background-color: #efe9dc;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(27, 23, 18, 0.035) 0 1px,
+    transparent 1px 11px
+  );
 }
 .dark .media-placeholder {
-  background:
-    repeating-linear-gradient(
-      45deg,
-      rgba(99,102,241,0.18) 0 12px,
-      rgba(99,102,241,0.06) 12px 24px
-    ),
-    linear-gradient(135deg, #1a1e3a, #0d1024);
+  background-color: #201c16;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.04) 0 1px,
+    transparent 1px 11px
+  );
 }

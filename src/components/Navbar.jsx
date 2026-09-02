@@ -5,8 +5,7 @@ import { Icon } from './Icon.jsx';
 import { useTheme } from '../hooks/useTheme.js';
 
 const LINKS = [
-  { label: 'Home', to: '/' },
-  { label: 'Portfolio', to: '/#work' },
+  { label: 'Work', to: '/#work' },
   { label: 'Services', to: '/#services' },
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },
@@ -24,6 +23,17 @@ function isLinkActive(to, location, activeSection) {
   }
   if (to === '/') return pathname === '/' && !activeSection;
   return pathname === to || pathname.startsWith(`${to}/`);
+}
+
+function Wordmark() {
+  return (
+    <Link
+      to="/"
+      className="font-display text-xl font-medium lowercase tracking-tight text-ink-900 dark:text-ink-50"
+    >
+      builtby<span className="text-clay-600 dark:text-clay-400">max</span>
+    </Link>
+  );
 }
 
 export function Navbar() {
@@ -44,7 +54,7 @@ export function Navbar() {
     setOpen(false);
   }, [location.pathname, location.hash]);
 
-  // Scroll-spy: light up Portfolio / Services when their section is in view
+  // Scroll-spy: light up Work / Services when their section is in view
   useEffect(() => {
     if (location.pathname !== '/') {
       setActiveSection(null);
@@ -73,29 +83,20 @@ export function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/80 backdrop-blur-xl shadow-sm dark:bg-ink-950/80'
-          : 'bg-transparent'
+          ? 'border-b border-ink-200/80 bg-ink-100/85 backdrop-blur-md dark:border-ink-800/80 dark:bg-ink-950/85'
+          : 'border-b border-transparent bg-transparent'
       }`}
     >
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-brand-600 focus:px-3 focus:py-2 focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-ink-900 focus:px-3 focus:py-2 focus:text-ink-50"
       >
         Skip to content
       </a>
       <nav className="container-x flex h-16 items-center justify-between sm:h-20">
-        <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold">
-          <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-accent-500 text-white shadow-glow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-              <path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 4l-4 16" />
-            </svg>
-          </span>
-          <span>
-            Site<span className="gradient-text">Crafters</span>
-          </span>
-        </Link>
+        <Wordmark />
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul className="hidden items-center gap-8 lg:flex">
           {LINKS.map((link) => {
             const active = isLinkActive(link.to, location, activeSection);
             return (
@@ -103,10 +104,10 @@ export function Navbar() {
                 <Link
                   to={link.to}
                   aria-current={active ? 'page' : undefined}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`relative text-sm transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-clay-500 after:transition-all after:duration-300 after:ease-soft ${
                     active
-                      ? 'bg-ink-900/5 text-ink-900 dark:bg-white/10 dark:text-white'
-                      : 'text-ink-700 hover:text-ink-900 dark:text-ink-200 dark:hover:text-white'
+                      ? 'text-ink-900 after:w-full dark:text-ink-50'
+                      : 'text-ink-600 after:w-0 hover:text-ink-900 dark:text-ink-300 dark:hover:text-ink-50'
                   }`}
                 >
                   {link.label}
@@ -116,26 +117,26 @@ export function Navbar() {
           })}
         </ul>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={toggle}
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            className="grid h-10 w-10 place-items-center rounded-full border border-ink-200 bg-white/70 text-ink-700 transition hover:bg-white dark:border-ink-700 dark:bg-ink-900/60 dark:text-ink-200 dark:hover:bg-ink-800"
+            className="grid h-9 w-9 place-items-center rounded-full border border-ink-200 text-ink-600 transition hover:border-ink-300 hover:text-ink-900 dark:border-ink-700 dark:text-ink-300 dark:hover:border-ink-600 dark:hover:text-ink-50"
           >
-            <Icon name={theme === 'dark' ? 'sun' : 'moon'} className="h-5 w-5" />
+            <Icon name={theme === 'dark' ? 'sun' : 'moon'} className="h-[18px] w-[18px]" />
           </button>
-          <Link to="/contact" className="hidden btn-primary lg:inline-flex">
-            Start a project
+          <Link to="/contact" className="hidden btn-primary px-5 py-2.5 lg:inline-flex">
+            Get in touch
           </Link>
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
             aria-label="Toggle navigation"
             aria-expanded={open}
-            className="grid h-10 w-10 place-items-center rounded-full border border-ink-200 bg-white/70 text-ink-700 lg:hidden dark:border-ink-700 dark:bg-ink-900/60 dark:text-ink-200"
+            className="grid h-9 w-9 place-items-center rounded-full border border-ink-200 text-ink-700 lg:hidden dark:border-ink-700 dark:text-ink-200"
           >
-            <Icon name={open ? 'close' : 'menu'} className="h-5 w-5" />
+            <Icon name={open ? 'close' : 'menu'} className="h-[18px] w-[18px]" />
           </button>
         </div>
       </nav>
@@ -155,7 +156,7 @@ export function Navbar() {
                   <li key={link.to}>
                     <Link
                       to={link.to}
-                      className="block rounded-2xl px-4 py-3 text-sm font-medium text-ink-800 hover:bg-ink-50 dark:text-ink-100 dark:hover:bg-ink-800"
+                      className="block rounded-xl px-4 py-3 text-sm text-ink-800 hover:bg-ink-100 dark:text-ink-100 dark:hover:bg-ink-800"
                     >
                       {link.label}
                     </Link>
@@ -163,7 +164,7 @@ export function Navbar() {
                 ))}
                 <li className="p-2">
                   <Link to="/contact" className="btn-primary w-full">
-                    Start a project
+                    Get in touch
                   </Link>
                 </li>
               </ul>
