@@ -5,57 +5,56 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Warm neutral ink ramp — paper-to-charcoal, no cool blue tint.
         ink: {
-          50: '#f6f7fb',
-          100: '#eceef6',
-          200: '#d4d8e8',
-          300: '#a9b1cf',
-          400: '#7a85b3',
-          500: '#525e93',
-          600: '#3d4775',
-          700: '#2a3157',
-          800: '#1a1e3a',
-          900: '#0d1024',
-          950: '#06081a',
+          50: '#faf9f4',
+          100: '#f2efe6',
+          200: '#e6e1d4',
+          300: '#cec6b4',
+          400: '#a79e8c',
+          500: '#7d7466',
+          600: '#5f5749',
+          700: '#453f34',
+          800: '#2a251d',
+          900: '#1b1712',
+          950: '#12100b',
+        },
+        // Single restrained accent — a warm clay. Used sparingly.
+        clay: {
+          400: '#d98a63',
+          500: '#c86a3f',
+          600: '#b0552e',
+          700: '#8f4526',
+        },
+        // Back-compat aliases so any stray reference degrades gracefully
+        // into the new monochrome/clay world instead of the old indigo.
+        brand: {
+          400: '#d98a63',
+          500: '#c86a3f',
+          600: '#b0552e',
+          700: '#8f4526',
         },
         accent: {
-          400: '#6ee7b7',
-          500: '#10b981',
-          600: '#059669',
-        },
-        brand: {
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
+          400: '#a79e8c',
+          500: '#7d7466',
+          600: '#5f5749',
         },
       },
       fontFamily: {
         sans: ['"Inter"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Space Grotesk"', '"Inter"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Fraunces"', 'Georgia', 'ui-serif', 'serif'],
+        mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       boxShadow: {
-        glow: '0 0 80px -20px rgba(99, 102, 241, 0.5)',
-        card: '0 10px 40px -10px rgba(15, 23, 42, 0.15)',
+        // Soft, low, warm — a hint of lift, never a glow.
+        soft: '0 1px 2px rgba(27, 23, 18, 0.04), 0 12px 32px -20px rgba(27, 23, 18, 0.25)',
+        card: '0 1px 2px rgba(27, 23, 18, 0.04), 0 12px 32px -20px rgba(27, 23, 18, 0.25)',
       },
-      animation: {
-        'gradient-x': 'gradient-x 12s ease infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'blink': 'blink 1s steps(1) infinite',
+      letterSpacing: {
+        label: '0.22em',
       },
-      keyframes: {
-        'gradient-x': {
-          '0%, 100%': { 'background-position': '0% 50%' },
-          '50%': { 'background-position': '100% 50%' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-12px)' },
-        },
-        blink: {
-          '0%, 50%': { opacity: '1' },
-          '51%, 100%': { opacity: '0' },
-        },
+      transitionTimingFunction: {
+        soft: 'cubic-bezier(0.22, 1, 0.36, 1)',
       },
     },
   },

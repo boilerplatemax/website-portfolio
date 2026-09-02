@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const STORAGE_KEY = 'sc-theme';
+const STORAGE_KEY = 'bbm-theme';
 
 function readInitial() {
   if (typeof window === 'undefined') return 'light';

@@ -7,10 +7,8 @@ upload.
 ```
 public/media/
 ├─ hero/
-│  ├─ ux-designer-illustration.png   (hero illustration  — ~1600×1200)
+│  ├─ ux-designer-illustration.png   (hero illustration, also reused on About — ~1600×1200)
 │  └─ designer-juggling-tasks.png    (mid-page CTA image — ~1600×1200)
-├─ about/
-│  └─ portrait.jpg                   (about page photo   — ~1200×1500 portrait)
 └─ portfolio/
    ├─ apssp.png
    ├─ downsyndrome-canada.png            ← Down Syndrome Canada (lead image for the brand-collection card)
