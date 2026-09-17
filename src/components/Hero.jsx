@@ -3,12 +3,6 @@ import { motion } from 'framer-motion';
 import { Icon } from './Icon.jsx';
 import { Media } from './Media.jsx';
 
-const STATS = [
-  { value: '100+', label: 'Projects shipped' },
-  { value: '+65%', label: 'Avg. traffic lift' },
-  { value: '~10d', label: 'Typical build' },
-];
-
 export function Hero() {
   return (
     <section
@@ -23,13 +17,13 @@ export function Hero() {
           className="max-w-2xl"
         >
           <span className="eyebrow">Web design &amp; development</span>
-          <h1 className="mt-6 heading-xl text-ink-900 dark:text-ink-50">
-            Websites, <span className="gradient-text">hand-built</span> for the
-            work they do.
+          <h1 className="mt-6 heading-xl text-ink-900">
+            Custom websites that{' '}
+            <span className="gradient-text">pull their weight</span>.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-600 dark:text-ink-300">
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-600">
             I&apos;m Max. I design and code fast, accessible sites for
-            organizations, unions, charities and small businesses — no page
+            organizations, unions, charities and small businesses. No page
             builders, no bloat, just clean work tuned to your audience.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
@@ -41,19 +35,6 @@ export function Hero() {
               Start a conversation
             </Link>
           </div>
-
-          <dl className="mt-14 grid max-w-lg grid-cols-3 gap-8 border-t border-ink-200 pt-8 dark:border-ink-800">
-            {STATS.map((s) => (
-              <div key={s.label} className="flex flex-col-reverse gap-2">
-                <dt className="font-mono text-[0.65rem] uppercase tracking-[0.14em] leading-snug text-ink-500 dark:text-ink-400">
-                  {s.label}
-                </dt>
-                <dd className="font-display text-3xl font-medium leading-none text-ink-900 dark:text-ink-50">
-                  {s.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
         </motion.div>
 
         <motion.div
@@ -62,7 +43,7 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           className="relative"
         >
-          <div className="overflow-hidden rounded-3xl border border-ink-200 bg-ink-50 dark:border-ink-800 dark:bg-ink-900">
+          <div className="overflow-hidden rounded-3xl border border-ink-200 bg-ink-50">
             <Media
               src="/media/hero/ux-designer-illustration.png"
               alt="Illustration of a designer building a website"

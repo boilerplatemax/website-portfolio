@@ -21,16 +21,16 @@ export function Work() {
   const supporting = featured.filter((p) => p.slug !== hero?.slug);
 
   return (
-    <section id="work" className="section border-t border-ink-200 dark:border-ink-800">
+    <section id="work" className="section border-t border-ink-200">
       <div className="container-x">
         <div className="max-w-2xl">
           <span className="eyebrow">Selected work</span>
           <h2 className="mt-5 heading-lg">
             Recent builds, <span className="gradient-text">shipped</span> and live.
           </h2>
-          <p className="mt-4 text-ink-600 dark:text-ink-300">
+          <p className="mt-4 text-ink-600">
             A cross-section of work across unions, charities, contractors and
-            brands — each one custom, fast and built to last.
+            brands. Each one custom, fast and built to last.
           </p>
         </div>
 
@@ -53,9 +53,9 @@ export function Work() {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card group flex h-full flex-col overflow-hidden hover:-translate-y-1 hover:shadow-card hover:border-ink-300 dark:hover:border-ink-700"
+                  className="card group flex h-full flex-col overflow-hidden hover:-translate-y-1 hover:shadow-card hover:border-ink-300"
                 >
-                  <div className="relative overflow-hidden border-b border-ink-200 dark:border-ink-800">
+                  <div className="relative overflow-hidden border-b border-ink-200">
                     <Media
                       src={item.image}
                       alt={item.title}
@@ -69,23 +69,23 @@ export function Work() {
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col p-6">
-                    <div className="flex flex-wrap items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-ink-500 dark:text-ink-400">
+                    <div className="flex flex-wrap items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-ink-500">
                       {item.tags.slice(0, 3).map((tag, ti) => (
                         <span key={tag} className="flex items-center gap-2">
-                          {ti > 0 && <span className="text-ink-300 dark:text-ink-600">/</span>}
+                          {ti > 0 && <span className="text-ink-300">/</span>}
                           {tag}
                         </span>
                       ))}
                     </div>
-                    <h3 className="mt-3 font-display text-xl font-medium text-ink-900 dark:text-ink-50">
+                    <h3 className="mt-3 font-display text-xl font-medium text-ink-900">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+                    <p className="mt-2 text-sm leading-relaxed text-ink-600">
                       {item.description}
                     </p>
-                    <span className="mt-auto inline-flex items-center gap-1.5 pt-5 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-ink-800 dark:text-ink-200">
+                    <span className="mt-auto inline-flex items-center gap-1.5 pt-5 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-ink-800">
                       View live site
-                      <Icon name="external" className="h-3.5 w-3.5 text-clay-600 transition group-hover:translate-x-0.5 dark:text-clay-400" />
+                      <Icon name="external" className="h-3.5 w-3.5 text-clay-600 transition group-hover:translate-x-0.5" />
                     </span>
                   </div>
                 </a>
@@ -108,8 +108,8 @@ export function Work() {
                 }}
                 className={`rounded-full border px-4 py-2 text-sm transition ${
                   active
-                    ? 'border-ink-900 bg-ink-900 text-ink-50 dark:border-ink-50 dark:bg-ink-50 dark:text-ink-900'
-                    : 'border-ink-200 bg-transparent text-ink-600 hover:border-ink-400 hover:text-ink-900 dark:border-ink-700 dark:text-ink-300 dark:hover:border-ink-600 dark:hover:text-ink-50'
+                    ? 'border-ink-900 bg-ink-900 text-ink-50'
+                    : 'border-ink-200 bg-transparent text-ink-600 hover:border-ink-400 hover:text-ink-900'
                 }`}
               >
                 {f}
@@ -118,7 +118,7 @@ export function Work() {
           })}
         </div>
 
-        {/* Gallery — auto-rows-fr + h-full keeps every card in a row the same height */}
+        {/* Gallery: auto-rows-fr + h-full keeps every card in a row the same height */}
         <ul className="mt-8 grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {visible.map((item) => (
@@ -135,9 +135,9 @@ export function Work() {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card group flex h-full flex-col overflow-hidden hover:-translate-y-1 hover:shadow-card hover:border-ink-300 dark:hover:border-ink-700"
+                  className="card group flex h-full flex-col overflow-hidden hover:-translate-y-1 hover:shadow-card hover:border-ink-300"
                 >
-                  <div className="relative overflow-hidden border-b border-ink-200 dark:border-ink-800">
+                  <div className="relative overflow-hidden border-b border-ink-200">
                     <Media
                       src={item.image}
                       alt={item.title}
@@ -148,19 +148,19 @@ export function Work() {
                     />
                   </div>
                   <div className="flex flex-1 flex-col p-5">
-                    <div className="flex flex-wrap items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-ink-500 dark:text-ink-400">
+                    <div className="flex flex-wrap items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.12em] text-ink-500">
                       {item.tags.map((tag, ti) => (
                         <span key={tag} className="flex items-center gap-2">
-                          {ti > 0 && <span className="text-ink-300 dark:text-ink-600">/</span>}
+                          {ti > 0 && <span className="text-ink-300">/</span>}
                           {tag}
                         </span>
                       ))}
                     </div>
-                    <h3 className="mt-3 flex items-center gap-2 font-display text-lg font-medium text-ink-900 dark:text-ink-50">
+                    <h3 className="mt-3 flex items-center gap-2 font-display text-lg font-medium text-ink-900">
                       {item.title}
-                      <Icon name="external" className="h-4 w-4 text-clay-600 opacity-0 transition group-hover:opacity-100 dark:text-clay-400" />
+                      <Icon name="external" className="h-4 w-4 text-clay-600 opacity-0 transition group-hover:opacity-100" />
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+                    <p className="mt-2 text-sm leading-relaxed text-ink-600">
                       {item.description}
                     </p>
                   </div>
@@ -197,16 +197,16 @@ function FeaturedCollectionCard({ item, className = '' }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`overflow-hidden rounded-3xl border border-ink-200 bg-ink-50 dark:border-ink-800 dark:bg-ink-900 ${className}`}
+      className={`overflow-hidden rounded-3xl border border-ink-200 bg-ink-50 ${className}`}
     >
       {/* Two-column grid with no outer padding; image bleeds to its cell edge */}
       <div className="grid lg:grid-cols-[1.05fr_1fr]">
-        {/* Lead image — fills its cell edge-to-edge */}
+        {/* Lead image fills its cell edge-to-edge */}
         <a
           href={item.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative block self-stretch overflow-hidden border-b border-ink-200 bg-ink-100 dark:border-ink-800 dark:bg-ink-950 lg:border-b-0 lg:border-r"
+          className="group relative block self-stretch overflow-hidden border-b border-ink-200 bg-ink-100 lg:border-b-0 lg:border-r"
         >
           <Media
             src={item.image}
@@ -221,31 +221,31 @@ function FeaturedCollectionCard({ item, className = '' }) {
           </span>
         </a>
 
-        {/* Content column — owns all of the padding */}
+        {/* Content column owns all of the padding */}
         <div className="flex flex-col p-6 sm:p-10">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[0.65rem] uppercase tracking-[0.14em]">
-            <span className="inline-flex items-center gap-2 text-clay-600 dark:text-clay-400">
+            <span className="inline-flex items-center gap-2 text-clay-600">
               <span className="h-1.5 w-1.5 rounded-full bg-clay-500" />
               Featured
             </span>
             {item.tags.map((tag) => (
-              <span key={tag} className="text-ink-500 dark:text-ink-400">
+              <span key={tag} className="text-ink-500">
                 {tag}
               </span>
             ))}
           </div>
 
-          <h3 className="mt-5 font-display text-2xl font-medium text-ink-900 sm:text-3xl dark:text-ink-50">
+          <h3 className="mt-5 font-display text-2xl font-medium text-ink-900 sm:text-3xl">
             {item.title}
           </h3>
-          <p className="mt-3 text-ink-600 dark:text-ink-300">{item.description}</p>
+          <p className="mt-3 text-ink-600">{item.description}</p>
 
           {collection && (
-            <div className="mt-8 border-t border-ink-200 pt-6 dark:border-ink-800">
-              <p className="font-mono text-[0.65rem] uppercase tracking-label text-ink-500 dark:text-ink-400">
+            <div className="mt-8 border-t border-ink-200 pt-6">
+              <p className="font-mono text-[0.65rem] uppercase tracking-label text-ink-500">
                 A {sites.length}-site brand family
               </p>
-              <p className="mt-2 text-sm text-ink-600 dark:text-ink-300">
+              <p className="mt-2 text-sm text-ink-600">
                 {collection.label}
               </p>
 
@@ -263,21 +263,21 @@ function FeaturedCollectionCard({ item, className = '' }) {
                       href={site.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex h-full flex-col gap-3 overflow-hidden rounded-2xl border border-ink-200 bg-ink-100/60 p-4 transition hover:-translate-y-0.5 hover:border-clay-400 dark:border-ink-800 dark:bg-ink-950/40 dark:hover:border-clay-500"
+                      className="group flex h-full flex-col gap-3 overflow-hidden rounded-2xl border border-ink-200 bg-ink-100/60 p-4 transition hover:-translate-y-0.5 hover:border-clay-400"
                     >
                       <div className="flex items-center justify-between">
-                        <span className="grid h-11 w-11 flex-none place-items-center rounded-xl border border-ink-300 bg-ink-50 font-mono text-xs font-medium tracking-wide text-ink-800 dark:border-ink-700 dark:bg-ink-900 dark:text-ink-100">
+                        <span className="grid h-11 w-11 flex-none place-items-center rounded-xl border border-ink-300 bg-ink-50 font-mono text-xs font-medium tracking-wide text-ink-800">
                           {site.initials}
                         </span>
-                        <span className="font-mono text-[0.58rem] uppercase tracking-[0.12em] text-ink-500 dark:text-ink-400">
+                        <span className="font-mono text-[0.58rem] uppercase tracking-[0.12em] text-ink-500">
                           {site.role}
                         </span>
                       </div>
                       <div className="flex flex-1 flex-col">
-                        <p className="font-display text-sm font-medium leading-snug text-ink-900 dark:text-ink-50">
+                        <p className="font-display text-sm font-medium leading-snug text-ink-900">
                           {site.title}
                         </p>
-                        <p className="mt-auto flex items-center gap-1 pt-2 text-xs text-ink-500 dark:text-ink-400">
+                        <p className="mt-auto flex items-center gap-1 pt-2 text-xs text-ink-500">
                           <span className="truncate">{site.domain}</span>
                           <Icon name="external" className="h-3 w-3 flex-none opacity-0 transition group-hover:opacity-100" />
                         </p>

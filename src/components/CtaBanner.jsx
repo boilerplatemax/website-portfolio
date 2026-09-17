@@ -5,14 +5,14 @@ import { Media } from './Media.jsx';
 
 export function CtaBanner() {
   return (
-    <section className="section border-t border-ink-200 dark:border-ink-800">
+    <section className="section border-t border-ink-200">
       <div className="container-x">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="overflow-hidden rounded-3xl border border-ink-900 bg-ink-900 text-ink-50 dark:border-ink-700"
+          className="overflow-hidden rounded-3xl border border-ink-900 bg-ink-900 text-ink-50"
         >
           <div className="grid items-center gap-10 p-8 sm:p-12 lg:grid-cols-2 lg:p-16">
             <div>
@@ -24,7 +24,7 @@ export function CtaBanner() {
                 Let&apos;s make something worth keeping.
               </h2>
               <p className="mt-4 max-w-lg text-ink-300">
-                From the first sketch to launch, I work with you the whole way —
+                From the first sketch to launch, I work with you the whole way,
                 so the site that goes live is genuinely yours.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">

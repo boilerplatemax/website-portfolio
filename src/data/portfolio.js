@@ -75,7 +75,7 @@ export const PORTFOLIO = [
     image: '/media/portfolio/signaturespan.png',
     tags: ['Construction', 'Brand'],
     description:
-      'A minimalist, photography-led showcase for an architectural glass studio — large-format windows, lift-and-slide doors and folding glass walls presented with the quiet polish their work demands.',
+      'A minimalist, photography-led showcase for an architectural glass studio: large-format windows, lift-and-slide doors and folding glass walls presented with the quiet polish their work demands.',
     featured: true,
   },
   {
@@ -170,43 +170,17 @@ export const PORTFOLIO = [
   },
 ];
 
-export const STATS = [
-  {
-    value: 100,
-    suffix: '+',
-    title: 'Satisfied Clients',
-    description: 'A track record of happy clients across a variety of sectors.',
-    icon: 'thumbs-up',
-  },
-  {
-    value: 65,
-    suffix: '%',
-    title: 'Increase in Traffic',
-    description:
-      'Experience a boost in your online presence to drive growth to your business.',
-    icon: 'chart',
-  },
-  {
-    value: 10,
-    suffix: ' Days',
-    title: 'Average Build Time',
-    description:
-      'Have an amazing fully functional website in as little as ten days.',
-    icon: 'clock',
-  },
-];
-
 export const SERVICES = [
   {
     title: 'Custom WordPress & React Builds',
     description:
-      'Fast, accessible, fully bespoke sites — no cookie-cutter templates, no bloat.',
+      'Fast, accessible sites built from scratch. No cookie-cutter templates, no bloat.',
     icon: 'code',
   },
   {
     title: 'E-commerce & Booking',
     description:
-      'Storefronts, shipping calculators, online registration and quote forms that actually convert.',
+      'Storefronts, shipping calculators, online registration and quote forms that make buying and booking easy.',
     icon: 'cart',
   },
   {
@@ -218,7 +192,7 @@ export const SERVICES = [
   {
     title: 'Branding & Design Systems',
     description:
-      'A clear visual identity wired into every page — typography, colour, motion, the works.',
+      'A clear visual identity across every page: typography, colour and motion that hold together.',
     icon: 'palette',
   },
   {
@@ -230,7 +204,7 @@ export const SERVICES = [
   {
     title: 'Ongoing Care',
     description:
-      'Hosting, updates, backups and support — you focus on the business, we keep the site healthy.',
+      'Hosting, updates, backups and support. You run the business, I keep the site healthy.',
     icon: 'heart',
   },
 ];
@@ -246,7 +220,7 @@ export const PROCESS = [
     step: '02',
     title: 'Design',
     description:
-      'Wireframes and mockups so you can see — and steer — the direction before a single line of code.',
+      'Wireframes and mockups so you can see and steer the direction before a single line of code.',
   },
   {
     step: '03',
@@ -258,6 +232,6 @@ export const PROCESS = [
     step: '04',
     title: 'Launch & Care',
     description:
-      'We ship it, train you on the CMS, and stick around for updates whenever you need them.',
+      'I ship it, train you on the CMS, and stick around for updates whenever you need them.',
   },
 ];
