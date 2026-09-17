@@ -1,4 +1,4 @@
-# SiteCrafters Development — React rebuild
+# SiteCrafters Development, React rebuild
 
 Modern, hand-built React.js rebuild of [sitecraftersdev.com](https://sitecraftersdev.com/).
 Vite + React 18 + Tailwind CSS + Framer Motion + React Router.
@@ -14,14 +14,13 @@ npm run preview  # preview the prod build
 
 ## What's improved over the WordPress original
 
-- **Performance** — Vite + code-splitting, no jQuery / page-builder bloat, lazy-loaded images.
-- **Design system** — Tailwind config with a custom palette, typography, dark mode and motion tokens.
-- **New sections** — Services grid, Process timeline, Marquee tech-stack ribbon, animated counters, contact form.
-- **Multi-page routing** — `/`, `/about`, `/contact` plus hash anchors (`/#work`, `/#services`).
-- **Accessibility** — Skip-to-content link, focus-visible rings, semantic landmarks, aria labels, `prefers-color-scheme`.
-- **Dark mode** — Toggle in the navbar, persisted in `localStorage`, follows system preference by default.
-- **Motion** — Framer Motion entrance animations, animated counter stats, smooth typed-rotator hero (custom hook, no `typed.js` dep).
-- **SEO** — Meta description, Open Graph tags, semantic HTML, sensible heading hierarchy.
+- **Performance:** Vite + code-splitting, no jQuery / page-builder bloat, lazy-loaded images.
+- **Design system:** Tailwind config with a custom light palette, typography and motion tokens.
+- **Sections:** Services grid, Process timeline, filterable work gallery, contact form.
+- **Multi-page routing:** `/`, `/about`, `/contact` plus hash anchors (`/#work`, `/#services`).
+- **Accessibility:** Skip-to-content link, focus-visible rings, semantic landmarks, aria labels.
+- **Motion:** Framer Motion entrance animations and smooth scroll behaviour.
+- **SEO:** Meta description, Open Graph tags, semantic HTML, sensible heading hierarchy.
 
 ## Where to drop your media
 
@@ -40,8 +39,8 @@ public/media/
 └─ portfolio/
    ├─ apssp.png
    ├─ downsyndrome-canada.png        ← Down Syndrome Canada (lead image for brand collection)
-   ├─ uniontab.png                   ← UnionTab       — featured
-   ├─ signaturespan.png              ← Signature Span — featured
+   ├─ uniontab.png                   ← UnionTab, featured
+   ├─ signaturespan.png              ← Signature Span, featured
    ├─ camp321.png
    ├─ peel-transition.png
    ├─ atu1573.png
@@ -54,21 +53,20 @@ public/media/
 ```
 
 **Accepted file types:** `.png`, `.jpg`, `.jpeg`, `.webp`, `.avif`, `.svg`.
-**Filenames are case-sensitive** — keep them exactly as listed above. If you
+**Filenames are case-sensitive,** keep them exactly as listed above. If you
 prefer a different filename or format, update the matching `image` field
 in `src/data/portfolio.js` (or the `src` prop in `Hero.jsx` / `CtaBanner.jsx` /
 `About.jsx`).
 
 > Once a file exists at the expected path, the placeholder pattern is replaced
-> automatically — no code changes needed.
+> automatically, no code changes needed.
 
 ## Project structure
 
 ```
 src/
-├─ components/   # Navbar, Hero, Work, Stats, Services, Process, CtaBanner, Footer, Icon, Media…
-├─ data/         # portfolio.js — site copy, portfolio items, services, process, stats
-├─ hooks/        # useTypewriter, useTheme
+├─ components/   # Navbar, Hero, Work, Services, Process, CtaBanner, Footer, Icon, Media…
+├─ data/         # portfolio.js: site copy, portfolio items, services, process
 ├─ pages/        # Home, About, Contact, NotFound
 ├─ styles/       # index.css (Tailwind layers + design tokens)
 ├─ App.jsx
@@ -78,7 +76,7 @@ src/
 ## Editing copy
 
 All site copy lives in `src/data/portfolio.js` and the individual section
-components — no CMS dependency, just edit and redeploy.
+components, no CMS dependency, just edit and redeploy.
 
 ## Deploy
 

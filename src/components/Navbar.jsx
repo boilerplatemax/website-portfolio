@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Icon } from './Icon.jsx';
-import { useTheme } from '../hooks/useTheme.js';
 
 const LINKS = [
   { label: 'Work', to: '/#work' },
@@ -29,9 +28,9 @@ function Wordmark() {
   return (
     <Link
       to="/"
-      className="font-display text-xl font-medium lowercase tracking-tight text-ink-900 dark:text-ink-50"
+      className="font-display text-xl font-medium lowercase tracking-tight text-ink-900"
     >
-      builtby<span className="text-clay-600 dark:text-clay-400">max</span>
+      builtby<span className="text-clay-600">max</span>
     </Link>
   );
 }
@@ -40,7 +39,6 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState(null);
-  const { theme, toggle } = useTheme();
   const location = useLocation();
 
   useEffect(() => {
@@ -83,7 +81,7 @@ export function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'border-b border-ink-200/80 bg-ink-100/85 backdrop-blur-md dark:border-ink-800/80 dark:bg-ink-950/85'
+          ? 'border-b border-ink-200/80 bg-ink-100/85 backdrop-blur-md'
           : 'border-b border-transparent bg-transparent'
       }`}
     >
@@ -106,8 +104,8 @@ export function Navbar() {
                   aria-current={active ? 'page' : undefined}
                   className={`relative text-sm transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-clay-500 after:transition-all after:duration-300 after:ease-soft ${
                     active
-                      ? 'text-ink-900 after:w-full dark:text-ink-50'
-                      : 'text-ink-600 after:w-0 hover:text-ink-900 dark:text-ink-300 dark:hover:text-ink-50'
+                      ? 'text-ink-900 after:w-full'
+                      : 'text-ink-600 after:w-0 hover:text-ink-900'
                   }`}
                 >
                   {link.label}
@@ -118,14 +116,6 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={toggle}
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-            className="grid h-9 w-9 place-items-center rounded-full border border-ink-200 text-ink-600 transition hover:border-ink-300 hover:text-ink-900 dark:border-ink-700 dark:text-ink-300 dark:hover:border-ink-600 dark:hover:text-ink-50"
-          >
-            <Icon name={theme === 'dark' ? 'sun' : 'moon'} className="h-[18px] w-[18px]" />
-          </button>
           <Link to="/contact" className="hidden btn-primary px-5 py-2.5 lg:inline-flex">
             Get in touch
           </Link>
@@ -134,7 +124,7 @@ export function Navbar() {
             onClick={() => setOpen((o) => !o)}
             aria-label="Toggle navigation"
             aria-expanded={open}
-            className="grid h-9 w-9 place-items-center rounded-full border border-ink-200 text-ink-700 lg:hidden dark:border-ink-700 dark:text-ink-200"
+            className="grid h-9 w-9 place-items-center rounded-full border border-ink-200 text-ink-700 lg:hidden"
           >
             <Icon name={open ? 'close' : 'menu'} className="h-[18px] w-[18px]" />
           </button>
@@ -156,7 +146,7 @@ export function Navbar() {
                   <li key={link.to}>
                     <Link
                       to={link.to}
-                      className="block rounded-xl px-4 py-3 text-sm text-ink-800 hover:bg-ink-100 dark:text-ink-100 dark:hover:bg-ink-800"
+                      className="block rounded-xl px-4 py-3 text-sm text-ink-800 hover:bg-ink-100"
                     >
                       {link.label}
                     </Link>

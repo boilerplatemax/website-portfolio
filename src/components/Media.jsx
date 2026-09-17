@@ -21,8 +21,8 @@ export function Media({
         role="img"
         aria-label={alt}
       >
-        <div className="text-center text-ink-600 dark:text-ink-300">
-          <div className="mx-auto mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/70 shadow-sm dark:bg-ink-900/70">
+        <div className="text-center text-ink-600">
+          <div className="mx-auto mb-3 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white/70 shadow-sm">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" className="h-6 w-6">
               <rect x="3" y="5" width="18" height="14" rx="2" />
               <circle cx="9" cy="11" r="2" />
