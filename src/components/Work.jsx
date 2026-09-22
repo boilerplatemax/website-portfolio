@@ -1,22 +1,39 @@
 import { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FILTERS, PORTFOLIO } from '../data/portfolio.js';
+import { FILTERS, PUBLISHED } from '../data/portfolio.js';
 import { Icon } from './Icon.jsx';
 import { Media } from './Media.jsx';
+import { ProjectLink, projectLinkType } from './ProjectLink.jsx';
 
 const INITIAL_COUNT = 6;
+
+// Only offer categories that have at least one published project.
+const AVAILABLE_FILTERS = FILTERS.filter(
+  (f) => f === 'All' || PUBLISHED.some((p) => p.categories.includes(f)),
+);
+
+const FOCUS_RING =
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-100';
+
+// Lift-on-hover only for cards that actually go somewhere.
+function cardClasses(item) {
+  const linked = projectLinkType(item) !== 'none';
+  return `card group flex h-full flex-col overflow-hidden ${
+    linked ? `hover:-translate-y-1 hover:shadow-card hover:border-ink-300 ${FOCUS_RING}` : ''
+  }`;
+}
 
 export function Work() {
   const [filter, setFilter] = useState('All');
   const [count, setCount] = useState(INITIAL_COUNT);
 
   const filtered = useMemo(() => {
-    if (filter === 'All') return PORTFOLIO;
-    return PORTFOLIO.filter((p) => p.tags.includes(filter));
+    if (filter === 'All') return PUBLISHED;
+    return PUBLISHED.filter((p) => p.categories.includes(filter));
   }, [filter]);
 
   const visible = filtered.slice(0, count);
-  const featured = PORTFOLIO.filter((p) => p.featured);
+  const featured = PUBLISHED.filter((p) => p.featured);
   const hero = featured.find((p) => p.collection) ?? featured[0];
   const supporting = featured.filter((p) => p.slug !== hero?.slug);
 
@@ -49,12 +66,7 @@ export function Work() {
                 transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="h-full"
               >
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="card group flex h-full flex-col overflow-hidden hover:-translate-y-1 hover:shadow-card hover:border-ink-300"
-                >
+                <ProjectLink item={item} className={cardClasses(item)}>
                   <div className="relative overflow-hidden border-b border-ink-200">
                     <Media
                       src={item.image}
@@ -64,9 +76,11 @@ export function Work() {
                       rounded=""
                       className="transition duration-700 ease-soft group-hover:scale-[1.04]"
                     />
-                    <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-ink-900/90 px-3 py-1 text-xs font-medium text-ink-50 opacity-0 transition group-hover:opacity-100">
-                      Visit <Icon name="external" className="h-3 w-3" />
-                    </span>
+                    {projectLinkType(item) === 'external' && (
+                      <span aria-hidden="true" className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-ink-900/90 px-3 py-1 text-xs font-medium text-ink-50 opacity-0 transition group-hover:opacity-100">
+                        Visit <Icon name="external" className="h-3 w-3" />
+                      </span>
+                    )}
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <div className="flex flex-wrap items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-ink-500">
@@ -83,30 +97,32 @@ export function Work() {
                     <p className="mt-2 text-sm leading-relaxed text-ink-600">
                       {item.description}
                     </p>
-                    <span className="mt-auto inline-flex items-center gap-1.5 pt-5 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-ink-800">
-                      View live site
-                      <Icon name="external" className="h-3.5 w-3.5 text-clay-600 transition group-hover:translate-x-0.5" />
-                    </span>
+                    <CardAction item={item} />
                   </div>
-                </a>
+                </ProjectLink>
               </motion.div>
             ))}
           </div>
         )}
 
         {/* Filters */}
-        <div className="mt-20 flex flex-wrap items-center gap-2">
-          {FILTERS.map((f) => {
+        <div
+          role="group"
+          aria-label="Filter projects by category"
+          className="mt-20 flex flex-wrap items-center gap-2"
+        >
+          {AVAILABLE_FILTERS.map((f) => {
             const active = f === filter;
             return (
               <button
                 key={f}
                 type="button"
+                aria-pressed={active}
                 onClick={() => {
                   setFilter(f);
                   setCount(INITIAL_COUNT);
                 }}
-                className={`rounded-full border px-4 py-2 text-sm transition ${
+                className={`rounded-full border px-4 py-2 text-sm transition ${FOCUS_RING} ${
                   active
                     ? 'border-ink-900 bg-ink-900 text-ink-50'
                     : 'border-ink-200 bg-transparent text-ink-600 hover:border-ink-400 hover:text-ink-900'
@@ -117,6 +133,18 @@ export function Work() {
             );
           })}
         </div>
+
+        <p className="sr-only" aria-live="polite">
+          {filter === 'All'
+            ? `Showing all ${filtered.length} projects`
+            : `Showing ${filtered.length} ${filter} project${filtered.length === 1 ? '' : 's'}`}
+        </p>
+
+        {filtered.length === 0 && (
+          <p className="mt-8 rounded-2xl border border-dashed border-ink-300 p-8 text-center text-ink-600">
+            Nothing in {filter} just yet. New work is on the way.
+          </p>
+        )}
 
         {/* Gallery: auto-rows-fr + h-full keeps every card in a row the same height */}
         <ul className="mt-8 grid auto-rows-fr gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -131,12 +159,7 @@ export function Work() {
                 transition={{ duration: 0.3 }}
                 className="h-full"
               >
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="card group flex h-full flex-col overflow-hidden hover:-translate-y-1 hover:shadow-card hover:border-ink-300"
-                >
+                <ProjectLink item={item} className={cardClasses(item)}>
                   <div className="relative overflow-hidden border-b border-ink-200">
                     <Media
                       src={item.image}
@@ -158,13 +181,16 @@ export function Work() {
                     </div>
                     <h3 className="mt-3 flex items-center gap-2 font-display text-lg font-medium text-ink-900">
                       {item.title}
-                      <Icon name="external" className="h-4 w-4 text-clay-600 opacity-0 transition group-hover:opacity-100" />
+                      {projectLinkType(item) === 'external' && (
+                        <Icon name="external" className="h-4 w-4 text-clay-600 opacity-0 transition group-hover:opacity-100" />
+                      )}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-ink-600">
                       {item.description}
                     </p>
+                    {projectLinkType(item) === 'case' && <CardAction item={item} />}
                   </div>
-                </a>
+                </ProjectLink>
               </motion.li>
             ))}
           </AnimatePresence>
@@ -184,6 +210,22 @@ export function Work() {
         )}
       </div>
     </section>
+  );
+}
+
+// Footer label on a card: "Read case study" / "View live site" / nothing.
+function CardAction({ item }) {
+  const type = projectLinkType(item);
+  if (type === 'none') return null;
+  const isCase = type === 'case';
+  return (
+    <span className="mt-auto inline-flex items-center gap-1.5 pt-5 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-ink-800">
+      {isCase ? 'Read case study' : 'View live site'}
+      <Icon
+        name={isCase ? 'arrow' : 'external'}
+        className="h-3.5 w-3.5 text-clay-600 transition group-hover:translate-x-0.5"
+      />
+    </span>
   );
 }
 
