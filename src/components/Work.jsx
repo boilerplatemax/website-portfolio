@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { FILTERS, PUBLISHED } from '../data/portfolio.js';
+import { FILTERS, PUBLISHED, inCategory } from '../data/portfolio.js';
 import { Icon } from './Icon.jsx';
 import { Media } from './Media.jsx';
 import { ProjectLink, projectLinkType } from './ProjectLink.jsx';
@@ -9,7 +9,7 @@ const INITIAL_COUNT = 6;
 
 // Only offer categories that have at least one published project.
 const AVAILABLE_FILTERS = FILTERS.filter(
-  (f) => f === 'All' || PUBLISHED.some((p) => p.categories.includes(f)),
+  (f) => PUBLISHED.some((p) => inCategory(p, f)),
 );
 
 const FOCUS_RING =
@@ -28,8 +28,7 @@ export function Work() {
   const [count, setCount] = useState(INITIAL_COUNT);
 
   const filtered = useMemo(() => {
-    if (filter === 'All') return PUBLISHED;
-    return PUBLISHED.filter((p) => p.categories.includes(filter));
+    return PUBLISHED.filter((p) => inCategory(p, filter));
   }, [filter]);
 
   const visible = filtered.slice(0, count);

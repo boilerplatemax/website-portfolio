@@ -1,7 +1,13 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { getProject, hasCaseStudy, PUBLISHED } from '../data/portfolio.js';
+import {
+  getProject,
+  hasCaseStudy,
+  isVisible,
+  projectCategories,
+  PUBLISHED,
+} from '../data/portfolio.js';
 import { Icon } from '../components/Icon.jsx';
 import { Media } from '../components/Media.jsx';
 import { CompareBars } from '../components/charts.jsx';
@@ -193,7 +199,7 @@ function Block({ block }) {
 
 // Older case studies use { body: [...], image } — map them onto blocks.
 function sectionBlocks(section) {
-  if (section.blocks) return section.blocks;
+  if (section.blocks) return section.blocks.filter(isVisible);
   const blocks = [].concat(section.body ?? []).map((text) => ({ type: 'p', text }));
   if (section.image) blocks.push({ type: 'image', ...section.image });
   return blocks;
@@ -217,12 +223,12 @@ export default function CaseStudy() {
   if (!study) return <NotFound />;
 
   const hero = study.hero ?? { src: project.image, alt: project.title };
-  const sections = study.sections ?? [];
+  const sections = (study.sections ?? []).filter(isVisible);
   const meta = [
     { label: 'Role', value: study.role },
     { label: 'Client', value: study.client },
     { label: 'Year', value: study.year },
-    { label: 'Discipline', value: project.categories.join(', ') },
+    { label: 'Discipline', value: projectCategories(project).join(', ') },
   ].filter((m) => m.value);
 
   const studies = PUBLISHED.filter(hasCaseStudy);
