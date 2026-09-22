@@ -61,15 +61,12 @@ export const PORTFOLIO = [
     title: 'UnionTab',
     url: 'https://uniontab.com',
     image: '/media/portfolio/uniontab.png',
-    categories: ['Web'],
+    categories: ['Web', 'Social & Marketing', 'Branding'],
     tags: ['Union', 'Software', 'Brand'],
     description:
       'An all-in-one platform that puts secure online voting, mass email & SMS, a member portal, document storage and event RSVPs in a single dashboard for union executives.',
     featured: true,
     caseStudy: {
-      // Remove `draft` to publish: the card then links here in production too.
-      // Still needed first: the [SCREENSHOT] images and the [COPY NEEDED] notes.
-      draft: true,
       tagline: 'A complete operating system for labour unions',
       summary:
         'A bilingual, all-in-one SaaS platform that gives labour unions everything they need to run a local (members, communications, elections, grievances, meetings, and finances) in a single branded dashboard.',
@@ -247,9 +244,11 @@ export const PORTFOLIO = [
               type: 'p',
               text: 'A file and posts system that distinguishes public content (visible to prospective members and the public) from private, members-only material, so a local can run its public presence and its internal operations from the same place.',
             },
-            { type: 'h3', text: 'Getting locals on board' },
+            // Dev-only until the copy is written; delete `draft` on both blocks to show them.
+            { type: 'h3', text: 'Getting locals on board', draft: true },
             {
               type: 'note',
+              draft: true,
               text: '[COPY NEEDED: how you acquired locals and which channels worked (e.g. direct outreach to executives, labour council events, word of mouth between locals, the free plan as a foot in the door), plus any sign-up or conversion numbers you have.]',
             },
           ],
@@ -336,11 +335,14 @@ export const PORTFOLIO = [
         },
         {
           id: 'next',
+          // Dev-only until the copy is written.
+          draft: true,
           label: 'Next',
           heading: 'What I’d do next',
           blocks: [
             {
               type: 'note',
+              draft: true,
               text: '[COPY NEEDED: 2 to 4 short forward-looking points, e.g. the next module on the roadmap, a growth channel you’d double down on, or what you’d build differently a second time.]',
             },
           ],
@@ -555,14 +557,31 @@ export const PORTFOLIO = [
   },
 ];
 
-// Drafts are visible while developing locally, hidden from production builds.
-export const PUBLISHED = PORTFOLIO.filter((p) => !p.draft || import.meta.env.DEV);
+// Anything with `draft: true` (a project, case study, section or block) is
+// visible while developing locally and hidden from production builds.
+export function isVisible(entry) {
+  return !entry?.draft || import.meta.env.DEV;
+}
+
+export const PUBLISHED = PORTFOLIO.filter(isVisible);
+
+// A project can sit in several categories. Accepts a list, or a single
+// string for convenience, and always returns a list.
+export function projectCategories(item) {
+  return [].concat(item?.categories ?? []);
+}
+
+// True when ANY of the project's categories matches the filter. Each project
+// is one entry, so a project matching on several categories is still one card.
+export function inCategory(item, filter) {
+  return filter === 'All' || projectCategories(item).includes(filter);
+}
 
 // A case study can be drafted on a live project: with `caseStudy.draft`, the
 // card keeps its external link in production until the draft flag is removed.
 export function hasCaseStudy(item) {
   const study = item?.caseStudy;
-  return Boolean(study) && (!study.draft || import.meta.env.DEV);
+  return Boolean(study) && isVisible(study);
 }
 
 export function getProject(slug) {

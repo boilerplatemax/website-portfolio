@@ -83,7 +83,8 @@ components, no CMS dependency, just edit and redeploy.
 Each item in `PORTFOLIO` (`src/data/portfolio.js`) has:
 
 - `categories`: one or more of `Web`, `Graphics`, `Social & Marketing`,
-  `Branding`. These drive the gallery filter. A filter button only appears
+  `Branding`. These drive the gallery filter: a project shows under every
+  category it lists (still as one card). A filter button only appears
   once at least one published project uses that category.
 - `tags`: the smaller industry labels shown on each card (Union, Charity…).
 - `url` *(optional)*: the live site. Cards without a case study link here in a new tab.
@@ -94,6 +95,8 @@ Each item in `PORTFOLIO` (`src/data/portfolio.js`) has:
 - `draft: true` *(optional)*: shown in `npm run dev` only, never in a production build.
   `caseStudy.draft: true` does the same for just the case study: the card keeps
   its live-site link in production until the flag is removed.
+  Individual case-study sections and blocks accept `draft: true` too, for
+  copy that isn't written yet.
 
 Case-study sections are built from ordered `blocks` (see the `uniontab` entry):
 `p`, `h3`, `list` (`{ lead, text }` items), `quote`, `image`, `images` (a pair),
