@@ -92,6 +92,15 @@ Each item in `PORTFOLIO` (`src/data/portfolio.js`) has:
   (`summary`, `client`, `year`, `role`, `services`, `hero`, `sections`,
   `outcomes`, `gallery`). Every image needs an `alt`.
 - `draft: true` *(optional)*: shown in `npm run dev` only, never in a production build.
+  `caseStudy.draft: true` does the same for just the case study: the card keeps
+  its live-site link in production until the flag is removed.
+
+Case-study sections are built from ordered `blocks` (see the `uniontab` entry):
+`p`, `h3`, `list` (`{ lead, text }` items), `quote`, `image`, `images` (a pair),
+`stats` (stat blocks with optional before/after bars), `embed` (a coded visual
+registered in `EMBEDS` in `src/pages/CaseStudy.jsx`) and `note`. Images take
+`src`, `alt`, `label` (what it shows), `caption` (why) and `placeholder` (the
+text shown until the file exists).
 
 A card with neither `url` nor `caseStudy` renders as a plain, non-clickable card.
 

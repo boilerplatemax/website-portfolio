@@ -66,6 +66,287 @@ export const PORTFOLIO = [
     description:
       'An all-in-one platform that puts secure online voting, mass email & SMS, a member portal, document storage and event RSVPs in a single dashboard for union executives.',
     featured: true,
+    caseStudy: {
+      // Remove `draft` to publish: the card then links here in production too.
+      // Still needed first: the [SCREENSHOT] images and the [COPY NEEDED] notes.
+      draft: true,
+      tagline: 'A complete operating system for labour unions',
+      summary:
+        'A bilingual, all-in-one SaaS platform that gives labour unions everything they need to run a local (members, communications, elections, grievances, meetings, and finances) in a single branded dashboard.',
+      role: 'Founder, full-stack developer and designer. Solo build covering product, design, copy, and marketing.',
+      // TODO(max): confirm this stack. It was an "e.g." list in the brief.
+      tools: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Stripe', 'Postgres / Supabase', 'Vercel'],
+      metrics: [
+        { value: '55% → 89%', label: 'Election turnout at ATU Local 1587' },
+        { value: '< 10 min', label: 'Member outreach each week, down from 2 to 5 hours' },
+        { value: '$0', label: 'Free base plan, replacing a $200 to $1,000 per month site manager' },
+      ],
+      hero: {
+        src: '/media/portfolio/uniontab.png',
+        alt: 'UnionTab homepage: the headline "Cut Costs. Drive Engagement. Lead Better." over a photo of union members in a meeting, with Start Free Today and View Live Demo buttons.',
+      },
+      sections: [
+        {
+          id: 'overview',
+          label: 'Overview',
+          heading: 'The problem',
+          blocks: [
+            {
+              type: 'p',
+              text: 'Most union locals, especially small and mid-sized ones, run on a patchwork of disconnected tools: a spreadsheet for the member list, a personal email account for blasts, a separate service for votes, paper or PDF forms for grievances, and a group chat for everything else.',
+            },
+            {
+              type: 'p',
+              text: 'Information gets siloed, member data lives in too many places, and the volunteer executives running the local spend hours on admin that should take minutes. Many locals also pay $200 to $1,000 a month to an outside site manager just to keep a basic web presence alive.',
+            },
+            {
+              type: 'quote',
+              text: 'There was no single, affordable, purpose-built platform designed around how a Canadian labour local actually operates: bilingual, compliance-aware, and simple enough for a volunteer board to run without training.',
+            },
+          ],
+        },
+        {
+          id: 'strategy',
+          label: 'Strategy',
+          heading: 'The approach',
+          blocks: [
+            {
+              type: 'p',
+              text: 'I built UnionTab to consolidate the entire operation into one place, guided by three principles:',
+            },
+            {
+              type: 'list',
+              items: [
+                {
+                  lead: 'Bilingual from day one.',
+                  text: 'English and French are built into the product, not bolted on, which is essential for the Canadian labour market and a genuine differentiator versus generic US tools.',
+                },
+                {
+                  lead: 'Branded per local.',
+                  text: 'Each union gets its own logo and colours applied automatically across the dashboard and every member-facing email, so communications look professional with zero design work from the executive.',
+                },
+                {
+                  lead: 'Data-informed and mobile-ready.',
+                  text: 'Real usage data (see below) showed a meaningful share of members access the platform on phones, so I prioritized a fast, fully responsive experience across devices.',
+                },
+              ],
+            },
+            {
+              type: 'images',
+              items: [
+                {
+                  src: '/media/portfolio/uniontab/bilingual-toggle.png',
+                  placeholder: '[SCREENSHOT: member dashboard with the EN / FR toggle]',
+                  alt: 'The UnionTab member dashboard shown in English and in French.',
+                  label: 'Bilingual by default',
+                  caption:
+                    'French isn’t a translation layer added later. Every screen and email ships in both languages, which generic US tools don’t offer Canadian locals.',
+                },
+                {
+                  src: '/media/portfolio/uniontab/per-local-branding.png',
+                  placeholder: '[SCREENSHOT: the same dashboard branded for two different locals]',
+                  alt: 'The same UnionTab dashboard styled in two different unions’ logos and colours.',
+                  label: 'Branded per local',
+                  caption:
+                    'A local uploads its logo and colours once and they carry through the dashboard and every email, so a volunteer executive gets professional output with zero design work.',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'execution',
+          label: 'Execution',
+          heading: 'What’s built',
+          blocks: [
+            {
+              type: 'p',
+              text: 'UnionTab ships 15+ integrated modules, organized the way a local actually works.',
+            },
+            {
+              type: 'image',
+              src: '/media/portfolio/uniontab/tools-mega-menu.png',
+              placeholder: '[SCREENSHOT: the Tools mega-menu showing the full module set]',
+              alt: 'UnionTab’s Tools menu listing every module, grouped into members, communications, member tools, finance and settings.',
+              label: 'The Tools menu',
+              caption:
+                'Every module sits in one menu, grouped by how a local actually runs rather than by feature type, so an executive finds any tool in one click instead of remembering which of five services it lives in.',
+            },
+            { type: 'h3', text: 'Members and outreach' },
+            {
+              type: 'p',
+              text: 'A full member database with approval workflows (approved, pending, rejected statuses), member invitations, and role management for the executive board.',
+            },
+            { type: 'h3', text: 'Communications' },
+            { type: 'p', text: 'This is where a lot of the depth lives:' },
+            {
+              type: 'list',
+              items: [
+                {
+                  lead: 'Mass Email',
+                  text: 'with recipient filtering (all members, approved only, admins, pending, or a hand-picked custom selection), a rich-text composer, file attachments (up to 10 files, 50MB each), automatic branded templates, monthly usage tracking, recipient preview, and per-send delivery confirmation.',
+                },
+                { lead: 'Mass SMS', text: 'for time-sensitive alerts like vote reminders or picket schedules.' },
+                {
+                  lead: 'Auto-share:',
+                  text: 'creating a news post or scheduling a meeting offers to email members automatically, pre-filling the content.',
+                },
+              ],
+            },
+            {
+              type: 'image',
+              src: '/media/portfolio/uniontab/mass-email-composer.png',
+              placeholder: '[SCREENSHOT: the Mass Email composer with recipient filter, rich text editor, attachments]',
+              alt: 'The Mass Email composer with a recipient filter, a rich-text editor and a list of attached files.',
+              label: 'Mass Email composer',
+              caption:
+                'Filtering, writing, attachments and a recipient preview share one screen, so an executive can target exactly the right members and check what they’ll receive before sending, all without a separate mailing tool.',
+            },
+            { type: 'h3', text: 'Member tools' },
+            { type: 'p', text: 'The operational core of running a local:' },
+            {
+              type: 'list',
+              items: [
+                {
+                  lead: 'Elections',
+                  text: 'with draft, active, and closed states, plus an Election Committee module for managing voter rolls and recording in-person votes alongside digital ones, built for fair, transparent, compliant elections.',
+                },
+                { lead: 'Grievances', text: 'with a full submission-to-resolution workflow and status tracking.' },
+                { lead: 'Meetings', text: 'with Zoom scheduling and automatic promotional poster generation.' },
+                { lead: 'Strikes', text: 'for organizing and communicating strike activities and schedules.' },
+              ],
+            },
+            {
+              type: 'image',
+              src: '/media/portfolio/uniontab/online-ballot-mobile.png',
+              placeholder: '[SCREENSHOT: an online ballot on a phone]',
+              alt: 'A UnionTab election ballot on a phone, with candidates listed and a submit vote button.',
+              label: 'Online voting',
+              caption:
+                'Ballots are built phone-first because a meaningful share of members use UnionTab on mobile. Voting takes about a minute wherever a member is, instead of a trip to a multi-day paper ballot.',
+            },
+            { type: 'h3', text: 'Finance and announcements' },
+            {
+              type: 'p',
+              text: 'Dues management and payment tracking, plus an announcements system for pinned, high-visibility updates.',
+            },
+            { type: 'h3', text: 'Settings and insights' },
+            {
+              type: 'p',
+              text: 'Per-local branding configuration, subscription and billing management, and a comprehensive Analytics dashboard giving executives at-a-glance insight into membership growth, communication history, election turnout, grievance status, dues collection, and engagement.',
+            },
+            {
+              type: 'embed',
+              component: 'uniontab-analytics',
+              label: 'Analytics dashboard · illustrative sample data',
+              caption:
+                'Membership, communications, elections and dues on one screen, so board meetings start from shared numbers instead of someone’s spreadsheet. The figures are sample data for a demo local, not client results.',
+            },
+            { type: 'h3', text: 'Public and private content' },
+            {
+              type: 'p',
+              text: 'A file and posts system that distinguishes public content (visible to prospective members and the public) from private, members-only material, so a local can run its public presence and its internal operations from the same place.',
+            },
+            { type: 'h3', text: 'Getting locals on board' },
+            {
+              type: 'note',
+              text: '[COPY NEEDED: how you acquired locals and which channels worked (e.g. direct outreach to executives, labour council events, word of mouth between locals, the free plan as a foot in the door), plus any sign-up or conversion numbers you have.]',
+            },
+          ],
+        },
+        {
+          id: 'results',
+          label: 'Results',
+          heading: 'Impact',
+          blocks: [
+            {
+              type: 'stats',
+              items: [
+                {
+                  label: 'Elections',
+                  value: '89%',
+                  headline: 'Higher turnout, less overhead',
+                  compare: {
+                    caption: 'Election turnout at ATU Local 1587',
+                    max: 100,
+                    rows: [
+                      { label: 'Multi-day paper ballot', value: 55, display: '55%' },
+                      { label: 'UnionTab online voting', value: 89, display: '89%', highlight: true },
+                    ],
+                  },
+                  text: 'At ATU Local 1587, replacing a multi-day paper ballot with UnionTab’s online voting took turnout from 55% to 89%, a 34 point increase. Votes are secure, tracked in real time, and automatically archived for the record.',
+                },
+                {
+                  label: 'Communications',
+                  value: '90%+',
+                  headline: 'Hours to minutes',
+                  compare: {
+                    caption: 'Time spent reaching the whole membership each week',
+                    max: 300,
+                    rows: [
+                      { label: 'Phone and email', min: 120, value: 300, display: '2 to 5 hrs' },
+                      { label: 'UnionTab bulk email & SMS', min: 5, value: 10, display: '5 to 10 min', highlight: true },
+                    ],
+                  },
+                  text: 'Union executives used to spend 2 to 5 hours a week reaching members by phone and email. With bulk email and SMS, the same outreach to the entire membership now takes 5 to 10 minutes, a reduction of over 90%.',
+                },
+                {
+                  label: 'Engagement',
+                  value: '~10%',
+                  headline: 'Getting the whole local online',
+                  compare: {
+                    caption: 'Share of members actively engaging with posts',
+                    max: 12,
+                    rows: [
+                      { label: 'Typical social media', min: 1, value: 5, display: '1 to 5%' },
+                      { label: 'UnionTab posts', value: 10, display: '~10%', highlight: true },
+                    ],
+                  },
+                  text: 'One local went from roughly 50 engaged members to near-full participation after adopting UnionTab’s simple sign-up flow. Built-in view and like tracking shows posts averaging around 100 views, with roughly 10% of members actively engaging, a rate that sits well above typical social media benchmarks of 1 to 5%.',
+                },
+                {
+                  label: 'Cost',
+                  value: '$0',
+                  headline: 'From four figures to free',
+                  compare: {
+                    caption: 'Monthly cost of a web presence',
+                    max: 1000,
+                    rows: [
+                      { label: 'Outside site manager', min: 200, value: 1000, display: '$200 to $1,000/mo' },
+                      { label: 'UnionTab base plan', value: 0, display: '$0', highlight: true },
+                    ],
+                  },
+                  text: 'Locals that used to pay $200 to $1,000 a month for an outside site manager can now run a professional, branded presence on UnionTab’s free base plan, with an optional paid tier for higher-volume needs.',
+                },
+              ],
+            },
+            { type: 'h3', text: 'Traffic and reach' },
+            {
+              type: 'p',
+              text: 'During a busy season the marketing site saw visitors climb 54% (to 331) and page views climb 218% (to 1,006), while bounce rate fell 43% (to 34%). Traffic skews Canadian (82%) and splits 64% desktop to 36% mobile, data I used directly to prioritize a fast, responsive build.',
+            },
+            {
+              type: 'embed',
+              component: 'uniontab-traffic',
+              label: 'Marketing site · Vercel Analytics',
+              caption:
+                'More than a third of visitors arrived on a phone, which is why the build treats mobile as a first-class experience rather than a scaled-down desktop.',
+            },
+          ],
+        },
+        {
+          id: 'next',
+          label: 'Next',
+          heading: 'What I’d do next',
+          blocks: [
+            {
+              type: 'note',
+              text: '[COPY NEEDED: 2 to 4 short forward-looking points, e.g. the next module on the roadmap, a growth channel you’d double down on, or what you’d build differently a second time.]',
+            },
+          ],
+        },
+      ],
+    },
   },
   {
     slug: 'signaturespan',
@@ -277,8 +558,11 @@ export const PORTFOLIO = [
 // Drafts are visible while developing locally, hidden from production builds.
 export const PUBLISHED = PORTFOLIO.filter((p) => !p.draft || import.meta.env.DEV);
 
+// A case study can be drafted on a live project: with `caseStudy.draft`, the
+// card keeps its external link in production until the draft flag is removed.
 export function hasCaseStudy(item) {
-  return Boolean(item?.caseStudy);
+  const study = item?.caseStudy;
+  return Boolean(study) && (!study.draft || import.meta.env.DEV);
 }
 
 export function getProject(slug) {
