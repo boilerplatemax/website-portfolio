@@ -15,6 +15,8 @@ const SECTION_IDS = ['work', 'services'];
 function isLinkActive(to, location, activeSection) {
   const { pathname, hash } = location;
   if (to.startsWith('/#')) {
+    // Case-study pages live under /work/, so keep "Work" lit there too
+    if (to === '/#work' && pathname.startsWith('/work/')) return true;
     if (pathname !== '/') return false;
     const target = to.slice(2);
     if (hash === `#${target}`) return true;

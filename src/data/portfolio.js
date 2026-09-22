@@ -1,12 +1,8 @@
-export const FILTERS = [
-  'All',
-  'Organization',
-  'Union',
-  'Construction',
-  'Charity',
-  'Campaign',
-  'E-commerce',
-];
+// Discipline categories drive the gallery filter. An item can belong to more
+// than one (e.g. a rebrand that shipped with a new website).
+export const CATEGORIES = ['Web', 'Graphics', 'Social & Marketing', 'Branding'];
+
+export const FILTERS = ['All', ...CATEGORIES];
 
 export const PORTFOLIO = [
   {
@@ -14,6 +10,7 @@ export const PORTFOLIO = [
     title: 'APSSP',
     url: 'https://apssp.org',
     image: '/media/portfolio/apssp.png',
+    categories: ['Web'],
     tags: ['Organization', 'Union'],
     description:
       'A modernized web platform for a professional education union representing 850+ members, highlighting advocacy, leadership, and resources for student services professionals.',
@@ -24,6 +21,7 @@ export const PORTFOLIO = [
     title: 'Down Syndrome Canada',
     url: 'https://downsyndrome.ca',
     image: '/media/portfolio/downsyndrome-canada.png',
+    categories: ['Web'],
     tags: ['Organization', 'Charity'],
     description:
       'A custom-built WordPress & React JS website for a national non-profit, featuring donations, educational resources, and an integrated Help321 platform supporting the Down Syndrome community.',
@@ -63,6 +61,7 @@ export const PORTFOLIO = [
     title: 'UnionTab',
     url: 'https://uniontab.com',
     image: '/media/portfolio/uniontab.png',
+    categories: ['Web'],
     tags: ['Union', 'Software', 'Brand'],
     description:
       'An all-in-one platform that puts secure online voting, mass email & SMS, a member portal, document storage and event RSVPs in a single dashboard for union executives.',
@@ -73,6 +72,7 @@ export const PORTFOLIO = [
     title: 'Signature Span',
     url: 'https://signaturespan.com',
     image: '/media/portfolio/signaturespan.png',
+    categories: ['Web'],
     tags: ['Construction', 'Brand'],
     description:
       'A minimalist, photography-led showcase for an architectural glass studio: large-format windows, lift-and-slide doors and folding glass walls presented with the quiet polish their work demands.',
@@ -83,6 +83,7 @@ export const PORTFOLIO = [
     title: 'Camp 3-21',
     url: 'https://camp321.ca',
     image: '/media/portfolio/camp321.png',
+    categories: ['Web'],
     tags: ['Organization', 'Charity', 'E-commerce'],
     description:
       "A bright and playful site for a Down Syndrome foundation's summer camp, including online registration, resources, and program information.",
@@ -93,6 +94,7 @@ export const PORTFOLIO = [
     title: 'Peel Transition',
     url: 'https://peeltransition.ca',
     image: '/media/portfolio/peel-transition.png',
+    categories: ['Web'],
     tags: ['Union', 'Campaign'],
     description:
       'A fast-deployed, informative campaign website opposing the dissolution of Peel Region, designed to engage and inform the public.',
@@ -103,6 +105,7 @@ export const PORTFOLIO = [
     title: 'ATU 1573',
     url: 'https://atu1573.ca',
     image: '/media/portfolio/atu1573.png',
+    categories: ['Web'],
     tags: ['Union'],
     description:
       'A robust union website for over 1,000 members, featuring secure 2FA login, user approval systems, private member access, news updates, and real-time notifications.',
@@ -113,6 +116,7 @@ export const PORTFOLIO = [
     title: "Teacher's Union",
     url: 'https://reelectcindygage.ca/',
     image: '/media/portfolio/teachers-union.png',
+    categories: ['Web'],
     tags: ['Campaign'],
     description:
       "A visually engaging campaign website for a teacher's union election, balancing clear messaging with impactful graphics and accessible information.",
@@ -123,6 +127,7 @@ export const PORTFOLIO = [
     title: 'Guri Stone',
     url: 'https://guristone.com/',
     image: '/media/portfolio/guri-stone.png',
+    categories: ['Web'],
     tags: ['Construction'],
     description:
       'A sleek contractor portfolio site focused on interlocking services, with strong calls-to-action and seamless quote booking functionality.',
@@ -133,6 +138,7 @@ export const PORTFOLIO = [
     title: 'Maple Valley Contracting',
     url: 'https://maplevalleycontracting.ca/',
     image: '/media/portfolio/maple-valley-contracting.png',
+    categories: ['Web'],
     tags: ['Construction'],
     description:
       'A clean, animated showcase website for a home renovation company, featuring kitchen, bathroom, and tile projects in an interactive portfolio.',
@@ -143,6 +149,7 @@ export const PORTFOLIO = [
     title: 'Wedding Website',
     url: 'https://andrew-iesha.ca/',
     image: '/media/portfolio/wedding.png',
+    categories: ['Web'],
     tags: ['Creative', 'Personal'],
     description:
       "A personalized, elegant wedding site featuring RSVP forms, event details, galleries, and contact options to bring the couple's vision to life.",
@@ -153,6 +160,7 @@ export const PORTFOLIO = [
     title: "Salvatore's Gourmet Foods",
     url: 'https://salvatoresgourmetfoods.com/',
     image: '/media/portfolio/salvatores.png',
+    categories: ['Web'],
     tags: ['Brand', 'E-commerce'],
     description:
       'An online store for premium Italian foods and sauces with a built-in shipping calculator, free local delivery, and engaging blog content for food lovers.',
@@ -163,12 +171,119 @@ export const PORTFOLIO = [
     title: 'Pay 321',
     url: 'http://pay321.ca/',
     image: '/media/portfolio/pay321.png',
+    categories: ['Web'],
     tags: ['Brand', 'Organization', 'Charity'],
     description:
       'A simple, informative site explaining a charitable payment processing program that converts transaction fees into donations while offering tax-deductible benefits.',
     featured: false,
   },
+
+  // --- PLACEHOLDERS -------------------------------------------------------
+  // `draft: true` items only render in `npm run dev`, never in a production
+  // build. Replace them with real projects (and delete `draft`) to publish.
+  {
+    slug: 'placeholder-graphics',
+    title: 'Graphics project (placeholder)',
+    url: null,
+    image: '/media/portfolio/placeholder-graphics.png',
+    categories: ['Graphics'],
+    tags: ['Print', 'Illustration'],
+    description:
+      'Placeholder for a graphics piece: posters, print collateral, infographics or illustration. No live URL and no case study, so the card is not a link.',
+    featured: false,
+    draft: true,
+  },
+  {
+    slug: 'placeholder-social',
+    title: 'Social campaign (placeholder)',
+    url: null,
+    image: '/media/portfolio/placeholder-social.png',
+    categories: ['Social & Marketing'],
+    tags: ['Campaign', 'Social'],
+    description:
+      'Placeholder for a social or marketing campaign: post templates, ad sets, email design or a launch kit.',
+    featured: false,
+    draft: true,
+  },
+  {
+    slug: 'placeholder-branding',
+    title: 'Brand identity (placeholder)',
+    url: null,
+    image: '/media/portfolio/placeholder-branding.png',
+    categories: ['Branding', 'Graphics'],
+    tags: ['Brand', 'Identity'],
+    description:
+      'Placeholder brand identity with a full case study, showing how a card links through to its detail page.',
+    featured: false,
+    draft: true,
+    // Optional. When present, the gallery card links to /work/<slug>.
+    caseStudy: {
+      summary:
+        'One or two sentences on the problem, the audience and what changed. This is the intro that sits under the page title.',
+      client: 'Client name',
+      year: '2026',
+      role: 'Brand strategy, identity design',
+      services: ['Logo', 'Colour & type', 'Brand guidelines'],
+      // Defaults to the card image; override for a wider hero shot.
+      hero: {
+        src: '/media/portfolio/placeholder-branding-hero.png',
+        alt: 'Placeholder: brand identity shown across stationery and signage',
+      },
+      sections: [
+        {
+          heading: 'The brief',
+          body: [
+            'What the client came in with: the problem, the constraints and who the work needed to reach.',
+          ],
+        },
+        {
+          heading: 'The approach',
+          body: [
+            'How the work took shape: research, early directions and the decisions that stuck.',
+            'Add as many paragraphs as needed. Each string renders as its own paragraph.',
+          ],
+          image: {
+            src: '/media/portfolio/placeholder-branding-process.png',
+            alt: 'Placeholder: early logo sketches alongside the final mark',
+            caption: 'Optional caption for a section image.',
+          },
+        },
+        {
+          heading: 'The result',
+          body: ['What shipped, and how it performed or was received.'],
+        },
+      ],
+      outcomes: [
+        { value: '00%', label: 'Placeholder metric' },
+        { value: '0×', label: 'Placeholder metric' },
+        { value: '00', label: 'Placeholder metric' },
+      ],
+      gallery: [
+        {
+          src: '/media/portfolio/placeholder-branding-1.png',
+          alt: 'Placeholder: primary logo on a light background',
+          caption: 'Primary mark',
+        },
+        {
+          src: '/media/portfolio/placeholder-branding-2.png',
+          alt: 'Placeholder: colour palette swatches',
+          caption: 'Palette',
+        },
+      ],
+    },
+  },
 ];
+
+// Drafts are visible while developing locally, hidden from production builds.
+export const PUBLISHED = PORTFOLIO.filter((p) => !p.draft || import.meta.env.DEV);
+
+export function hasCaseStudy(item) {
+  return Boolean(item?.caseStudy);
+}
+
+export function getProject(slug) {
+  return PUBLISHED.find((p) => p.slug === slug);
+}
 
 export const SERVICES = [
   {
